@@ -36,3 +36,71 @@
     transform: rotate(360deg);
   }
 }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  position:relative;
+  align-items:center;
+  margin:1em;
+  padding: 0.5em;
+  border: 1px solid lightgray; 
+  border-radius: 2em;
+  width: 25vh;
+  height: 25vh;
+  justify-content: space-around
+}
+
+.text {
+  font-family: Arvo-Bold;
+  margin-top: 0.5em;
+  position: absolute;
+  bottom: 0px;
+  margin-bottom: 0.5em;
+}
+
+.image {
+  width: 100%;
+  height: 100%; 
+  object-fit: contain;
+  padding:1em;
+}
+
+.homePage {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+  
+}
+
+.scrollView {
+    display: flex;
+    justify-content: spaceAround;
+    flex-direction: row;
+    width: 100vw;
+}
+.container {
+    flex: 1;
+    background-color: #fff;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Header {
+    Text-align: center;
+    font-size: xx-large;
+    font-family: Arvo-Bold, serif;
+    border-bottom-width:1px;
+    padding: 0.5em;
+    border-color: lightgray
+  }
+
+  .gameButton {
+    display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw
+  }
+
+  
