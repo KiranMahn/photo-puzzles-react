@@ -2,12 +2,12 @@
 
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { AdvancedMarker, Pin } from '@vis.gl/react-google-maps';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import React from "react";
 
-
-
 function GuessMap(props) {
+    const [map, setMap] = React.useState(null)
+    const [result, setResult] = useState(false);
     var imgLocation;
     
     let mrk;
@@ -30,14 +30,14 @@ function GuessMap(props) {
     googleMapsApiKey: "AIzaSyDUTQ1HuxGpIoy8akXAiFz5afqOMSc7JQI"
   })
 
-  const [map, setMap] = React.useState(null)
 
   const onLoad = React.useCallback(function callback(map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-    map.setZoom(1);
-    setMap(map)
+    // const bounds = new window.google.maps.LatLngBounds(center);
+    // map.fitBounds(bounds);
+    setMap(map);
+    map.setZoom(2);
+
     imgLocation = props.location;
     console.log("props imgLocation: " + imgLocation);
   }, [])
@@ -101,8 +101,9 @@ function GuessMap(props) {
 
     const diff = getDistance(location);
     console.log("diff: " + diff);
-    if(diff < 5000){
+    if(diff < 100000){
       console.log("you win!!!");
+      setResult(true);
     }
   }
   return isLoaded ? (
