@@ -23,6 +23,7 @@ function GuessMap(props) {
     lat: -3.745,
     lng: -38.523
     };
+    const [currentLoc, setCurrentLoc] = useState(center);
 
     let coordinates = {lat: center.lat, lng: center.lng};
 
@@ -83,12 +84,14 @@ function GuessMap(props) {
     
     coordinates.lat = lat
     coordinates.lng = lng
-    console.log('This is ->', markerId)
+    console.log('This is ->' + lat + ", " + lng)
     var locationObj = new window.google.maps.LatLng(lat, lng);
     var location =[lat, lng];
-    
+    map.setCenter(locationObj);
+    console.log(map);
+    setCurrentLoc(locationObj);
+
     // inside the map instance you can call any google maps method
-    map.setCenter({ lat, lng })
     // ref. https://developers.google.com/maps/documentation/javascript/reference?hl=it
     if(!mrk) {
       mrk = new window.google.maps.Marker({
@@ -99,15 +102,18 @@ function GuessMap(props) {
     } else {
       mrk.setPosition(locationObj);
       map.setZoom(5);
+      map.setCenter(locationObj);
+
     }
+
     markers.push(mrk);
 
     let diff = getDistance(location);
-    diff = Math.round(diff);
+    diff = Math.round(diff/1609);
     props.setDist(diff);
     console.log("diff: " + diff);
     console.log("attemps: " + props.atmp);
-    if(diff < 300000){
+    if(diff < 500){
       console.log("you win!!!");
       props.resSetter("Win");
       props.setReady(true);
@@ -125,16 +131,19 @@ function GuessMap(props) {
         for (let i = 0; i < markers.length; i++) {
           markers[i].setMap(null);
         }
+        var mapcenter = new window.google.maps.LatLng(-3.745, -38.523);
+        setCurrentLoc(mapcenter);
         markers = [];
       }
     }
-    
+    map.setCenter(locationObj);
+
     props.setAttempt(props.atmp + 1);
   }
   return isLoaded ? (
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={currentLoc}
         zoom={5}
         onLoad={onLoad}
         onUnmount={onUnmount}

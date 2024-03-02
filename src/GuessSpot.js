@@ -41,7 +41,12 @@ export default function GuessSpot(props)  {
     const resetGame = () => {
         setResult("Pending");
         setReady(false);
-        id = Math.floor(Math.random() * 5);
+        let nextId = Math.floor(Math.random() * 5);
+        while(nextId == id) {
+            nextId = Math.floor(Math.random() * 5);
+        }
+        id = nextId;
+        
         console.log("newid:" + id);
         imgLocation = myData["images"][id]["location"];
         setLoc(imgLocation);
@@ -170,7 +175,7 @@ export default function GuessSpot(props)  {
                                     fontSize: 'x-large'
                                 }}>You Lost!</Text>
                             <Text>
-                                Your last guess was {distance} meters away! Do you want to play again?
+                                Your last guess was {distance} miles away! Do you want to play again?
                             </Text>
                             <Pressable onPress={() => {resetGame();}} 
                                 style={{
@@ -216,9 +221,12 @@ export default function GuessSpot(props)  {
                             }}>How to Play</Text>
                         <Text style={{fontFamily: 'Arvo-Bold', 
                                       color: 'gray',
+                                      width: '70%',
+                                      textAlign: 'center',
+                                      letterSpacing: 1,
                                       
                                 }}>
-                            Guess where the picture was taken by selecting a point on the map. You get 3 attempts.
+                            Guess where the picture was taken by selecting a point on the map. You get 3 attempts. Your guess must be within 500 miles of the photo.
                         </Text>
                         <Pressable onPress={() => {console.log("clicked");setShowInfoPanel(false);setBlur(1);}} 
                             style={{
