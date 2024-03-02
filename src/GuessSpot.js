@@ -1,13 +1,28 @@
 import './App.css';
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 import { View , Text, Pressable, Image } from 'react-native';
 import GuessMap from './GuessMap';
+import myData from './PhotoDetails.json';
+let id = 0;
+
+let imgLocation = "[56.6577495263809, -4.635479507522097]";
+let imageSrc = './scotland.png';
+
+// choose random number
+id = Math.floor(Math.random() * 5);
+console.log("id: " + id);
+// get image with that id
+
+imgLocation = myData["images"][id]["location"];
+console.log("imageLocation: " + imgLocation);
+
+imageSrc = myData["images"][id]["src"];
+console.log("imageSrc: " + imageSrc);
 
 export default function GuessSpot(props)  {
-    let {title, navigation} = props;
-    let id =0;
-    let imgLocation = "[56.6577495263809, -4.635479507522097]";
+    console.log(myData);
+
     const [blur, setBlur] = useState(0.5);
     // result is true for win or false for lost
     const [result, setResult] = useState("Pending");
@@ -19,25 +34,50 @@ export default function GuessSpot(props)  {
     const [attmp, setAttempt] = useState(0);
 
     const [distance, setDistance] = useState(0);
+
+    const[loc, setLoc] = useState(imgLocation);
+    const[src, setSrc] = useState(imageSrc);
     
-    // get rnd id
-    const getRndImage = () => {
-        console.log("Blur: " + blur);
+    const resetGame = () => {
+        setResult("Pending");
+        setReady(false);
+        id = Math.floor(Math.random() * 5);
+        console.log("newid:" + id);
+        imgLocation = myData["images"][id]["location"];
+        setLoc(imgLocation);
+        imageSrc = myData["images"][id]["src"];
+        setSrc(imageSrc);
+        console.log("imageSrc: " + imageSrc);
+        console.log("clicked");
         
-        //let imgLocation = blog.imageId.location;
-        return './scotland.png';
+        setBlur(1);
+        setAttempt(0);
     }
+    
+    
+
+    // set image url 
+    // set image location 
+
+    // get rnd id
+    
     const [showInfoPanel, setShowInfoPanel] = useState(true);
+
     const getResult = (result) => {
         setBlur(0.5);
         
     }
+
+    const blurBackground = () => {
+        setBlur(0.5);
+    }
+
     const ResultWindow = () => {
         if(ready) {
             console.log("displaying result panel");
             if(result == "Win"){
                 return (
-                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={setBlur(0.5)}>
+                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
                         <View style={{
                             width: '50vw',
                             height: '30vh', 
@@ -55,7 +95,7 @@ export default function GuessSpot(props)  {
                             <Text>
                                 It took you {attmp} attemps! Do you want to play again?
                             </Text>
-                            <Pressable onPress={() => {console.log("clicked");setResult("Pending");setReady(false);setBlur(1);setAttempt(0)}} 
+                            <Pressable onPress={() => {resetGame();}} 
                                 style={{
                                     width: '20%',
                                     height: '15%',
@@ -75,7 +115,7 @@ export default function GuessSpot(props)  {
             }
             if(result == "Try"){
                 return (
-                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={setBlur(0.5)}>
+                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
                         <View style={{
                             width: '50vw',
                             height: '30vh', 
@@ -93,7 +133,7 @@ export default function GuessSpot(props)  {
                             <Text>
                                 Your guess was {distance} meters away!
                             </Text>
-                            <Pressable onPress={() => {console.log("clicked");setResult("Pending");setReady(false);setBlur(1)}} 
+                            <Pressable onPress={() => {resetGame();}} 
                                 style={{
                                     width: '20%',
                                     height: '15%',
@@ -114,7 +154,7 @@ export default function GuessSpot(props)  {
             }
             if(result == "Lost"){
                 return (
-                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={setBlur(0.5)}>
+                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
                         <View style={{
                             width: '50vw',
                             height: '30vh', 
@@ -132,7 +172,7 @@ export default function GuessSpot(props)  {
                             <Text>
                                 Your last guess was {distance} meters away! Do you want to play again?
                             </Text>
-                            <Pressable onPress={() => {console.log("clicked");setResult("Pending");setReady(false);setBlur(1);setAttempt(0)}} 
+                            <Pressable onPress={() => {resetGame();}} 
                                 style={{
                                     width: '20%',
                                     height: '15%',
@@ -155,6 +195,7 @@ export default function GuessSpot(props)  {
             return;
         }
     }
+
     const PopUp = () => {
         if(showInfoPanel) {
             return (
@@ -201,7 +242,7 @@ export default function GuessSpot(props)  {
         }
     }
 
-
+    console.log("src: " + src);
 
     return (
         <View style={{height: '100vh'}}>
@@ -209,7 +250,10 @@ export default function GuessSpot(props)  {
             <ResultWindow/>
             <View style={{height: '100vh', opacity:blur}}>
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <Text style={{margin: '2em', fontSize: '36px', fontWeight: 'bold'}}>&larr;</Text>
+                    <Link to="/" style={{textDecoration: 'none'}}>
+                        <Text style={{margin: '2em', fontSize: '36px', fontWeight: 'bold'}}>&larr;</Text>
+                    </Link>
+                    
                     <Text style={{textAlign: 'center', fontSize: 'xx-large', fontFamily: 'Arvo-Bold, serif', borderBottomWidth:'1px', padding: '0.5em', borderBlockColor: 'lightgray'}}> Guess the Spot </Text>
                     <Pressable style={{margin: '2em'}}>
                         <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em'}}>Login</Text>
@@ -221,11 +265,11 @@ export default function GuessSpot(props)  {
 
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
                     <View>
-                        <Image source={getRndImage()} style={{width: '30vw', height: '30vw', margin: '2em'}}/>
+                        <Image source={src} style={{width: '30vw', height: '30vw', margin: '2em'}}/>
                     </View>
 
                     <View style={{margin: '4em', alignSelf: 'end'}}>
-                        <GuessMap location={imgLocation} resSetter={setResult} setReady={setReady} setAttempt={setAttempt} atmp={attmp} setDist={setDistance}/>
+                        <GuessMap location={loc} resSetter={setResult} setReady={setReady} setAttempt={setAttempt} atmp={attmp} setDist={setDistance}/>
                     </View>
                 </View>
 
