@@ -3,6 +3,9 @@ import Home from './Home';
 import { BrowserRouter as Router, Route, Routes, BrowserRouter} from 'react-router-dom';
 import NotFound from './NotFound';
 import GuessSpot from './GuessSpot';
+import PictureTrivia from './PictureTrivia';
+import StoryMode from './StoryMode';
+import MemoryGame from './MemoryGame';
 
 function App() {
 
@@ -16,6 +19,9 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home/>}/>
             <Route exact path="/guessspot" element={<GuessSpot/>}/>
+            <Route exact path="/picturetrivia" element={<PictureTrivia/>}/>
+            <Route exact path="/storymode" element={<StoryMode/>}/>
+            <Route exact path="/memorygame" element={<MemoryGame/>}/>
             {/* <Route path="/create">
               <Create/>
             </Route>

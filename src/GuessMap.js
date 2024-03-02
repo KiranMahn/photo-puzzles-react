@@ -4,6 +4,7 @@ import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { AdvancedMarker, Pin } from '@vis.gl/react-google-maps';
 import { useRef, useState } from 'react';
 import React from "react";
+let markers = [];
 
 function GuessMap(props) {
     const [map, setMap] = React.useState(null)
@@ -99,16 +100,36 @@ function GuessMap(props) {
       mrk.setPosition(locationObj);
       map.setZoom(5);
     }
+    markers.push(mrk);
 
-    const diff = getDistance(location);
+    let diff = getDistance(location);
+    diff = Math.round(diff);
+    props.setDist(diff);
     console.log("diff: " + diff);
-    if(diff < 100000){
+    console.log("attemps: " + props.atmp);
+    if(diff < 300000){
       console.log("you win!!!");
-      props.resSetter(true);
+      props.resSetter("Win");
+      props.setReady(true);
+      for (let i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+      }
+      markers = [];
     } else {
-      props.resSetter(false);
+      if(props.atmp < 2) {
+        props.resSetter("Try");
+      }
+      else {
+        props.resSetter("Lost");
+        props.setReady(true);
+        for (let i = 0; i < markers.length; i++) {
+          markers[i].setMap(null);
+        }
+        markers = [];
+      }
     }
-    props.setReady(true);
+    
+    props.setAttempt(props.atmp + 1);
   }
   return isLoaded ? (
       <GoogleMap
@@ -127,14 +148,6 @@ function GuessMap(props) {
         {/* {coordinates.map(({ lat, lng, name }, index) => ( */}
           <AdvancedMarker 
           position={{lat: 53.54992, lng: 10.00678}}
-          // lat={coordinates.lat}
-          // lng={coordinates.lng}
-          // markerId={1}
-          // onClick={onMarkerClick} // you need to manage this prop on your Marker component!
-          //draggable={true}
-          // onDragStart={(e, { latLng }) => {}}
-          // onDrag={(e, { latLng }) => {}}
-          // onDragEnd={(e, { latLng }) => {}}
           >
             <Pin background={'#FBBC04'} glyphColor={'#000'} borderColor={'#000'} />
 

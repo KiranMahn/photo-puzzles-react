@@ -1,10 +1,12 @@
 
+import { useState } from 'react';
 import './App.css';
 import { useNavigate } from 'react-router-dom';
 import { redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 const GameButton = (props) => {
     const { title, navigation } = props;
+    const [linkAddy, setLink] = useState("./guessspot");
     console.log("title: " + title);
 
     const getUrl = () => {
@@ -35,24 +37,48 @@ const GameButton = (props) => {
         }
     }
 
+    const getLinkAddy = (title) => {
+        switch(title) {
+            case "Guess the spot":
+                console.log("going to guess spot");
+                return("./guessspot");
+            case "Picture Trivia":
+                console.log("going to picture trivia");
+                return("./picturetrivia");
+                
+            case "Story Creation":
+                console.log("going to storyMode");
+                return("./storymode");
+                
+            case "Memory Game":
+                console.log("going to Memory game");
+                return("./memorygame");
+        }
+                
+    }
+
     const handleClick = (title) => {
         console.log("clicked: " + title);
         switch(title) {
             case "Guess the spot":
                 console.log("going to guess spot");
+                setLink("./guessspot");
                 //navigation.navigate('GuessSpot', {name: 'Jane'})
                 break;
             case "Picture Trivia":
                 console.log("going to picture trivia");
-                navigation.navigate('PictureTrivia', {name: 'Jane'})
+                setLink("./picturetrivia");
+                // navigation.navigate('PictureTrivia', {name: 'Jane'})
                 break;
             case "Story Creation":
                 console.log("going to storyMode");
-                navigation.navigate('StoryMode', {name: 'Jane'})
+                setLink("./storymode");
+                // navigation.navigate('StoryMode', {name: 'Jane'})
                 break;
             case "Memory Game":
                 console.log("going to Memory game");
-                navigation.navigate('MemoryGame', {name: 'Jane'})
+                setLink("./memorygame");
+                // navigation.navigate('MemoryGame', {name: 'Jane'})
                 break;
             
         }
@@ -65,7 +91,7 @@ const GameButton = (props) => {
         <button onClick={() => handleClick(title)} className={"card"} style={{backgroundImage: `url(${getUrl()})`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center",   backgroundOrigin: "content-box", padding: "1.5em", paddingBottom: "2.5em" 
     }}>
            
-            <Link to="/guessspot" className={"text"}> {title} </Link>
+            <Link to={getLinkAddy(title)} className={"text"}> {title} </Link>
         </button>
         
         

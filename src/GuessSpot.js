@@ -3,12 +3,23 @@ import React, { useState } from 'react';
 
 import { View , Text, Pressable, Image } from 'react-native';
 import GuessMap from './GuessMap';
-export default function GuessSpot()  {
+
+export default function GuessSpot(props)  {
+    let {title, navigation} = props;
     let id =0;
     let imgLocation = "[56.6577495263809, -4.635479507522097]";
     const [blur, setBlur] = useState(0.5);
-    const [result, setResult] = useState(false);
+    // result is true for win or false for lost
+    const [result, setResult] = useState("Pending");
+
+    // ready is true when user wins or has guess wrong 3 times in a row
     const [ready, setReady] = useState(false);
+
+    // atmp is increased with each click
+    const [attmp, setAttempt] = useState(0);
+
+    const [distance, setDistance] = useState(0);
+    
     // get rnd id
     const getRndImage = () => {
         console.log("Blur: " + blur);
@@ -18,53 +29,128 @@ export default function GuessSpot()  {
     }
     const [showInfoPanel, setShowInfoPanel] = useState(true);
     const getResult = (result) => {
-        if(result) {
-            console.log("winner")
-            return "Win!";
-        } else {
-            console.log("loser")
-            return "Lose!";
-        }
+        setBlur(0.5);
+        
     }
     const ResultWindow = () => {
         if(ready) {
             console.log("displaying result panel");
-            return (
-                <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
-                    <View style={{
-                        width: '50vw',
-                        height: '30vh', 
-                        backgroundColor: 'oldlace', 
-                        justifyContent: 'space-evenly', 
-                        alignItems: 'center',
-                        borderRadius: 25,
-                        border: '3px solid moccasin'
-                        }}>
-                        <Text style={{
-                                fontFamily: 'Arvo-Bold, serif',
-                                fontWeight: 'bold',
-                                fontSize: 'x-large'
-                            }}>You {getResult(result)}</Text>
-                        <Text>
-                            Do you want to play again?
-                        </Text>
-                        <Pressable onPress={() => {console.log("clicked");setResult(false);setReady(false);setBlur(1)}} 
-                            style={{
-                                width: '20%',
-                                height: '15%',
-                                backgroundColor: 'moccasin',
-                                borderRadius: '15px',
-                                alignItems: 'center',
-                                justifyContent: 'center',
+            if(result == "Win"){
+                return (
+                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={setBlur(0.5)}>
+                        <View style={{
+                            width: '50vw',
+                            height: '30vh', 
+                            backgroundColor: 'oldlace', 
+                            justifyContent: 'space-evenly', 
+                            alignItems: 'center',
+                            borderRadius: 25,
+                            border: '3px solid moccasin'
                             }}>
                             <Text style={{
-                                fontFamily: 'Arvo-Bold, serif',
-                                fontWeight: 'bold'
-                            }}>Play Again</Text>
-                        </Pressable>
-                    </View> 
-                </View>
-            );
+                                    fontFamily: 'Arvo-Bold, serif',
+                                    fontWeight: 'bold',
+                                    fontSize: 'x-large'
+                                }}>You Win!</Text>
+                            <Text>
+                                It took you {attmp} attemps! Do you want to play again?
+                            </Text>
+                            <Pressable onPress={() => {console.log("clicked");setResult("Pending");setReady(false);setBlur(1);setAttempt(0)}} 
+                                style={{
+                                    width: '20%',
+                                    height: '15%',
+                                    backgroundColor: 'moccasin',
+                                    borderRadius: '15px',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}>
+                                <Text style={{
+                                    fontFamily: 'Arvo-Bold, serif',
+                                    fontWeight: 'bold'
+                                }}>Play Again</Text>
+                            </Pressable>
+                        </View> 
+                    </View>
+                );
+            }
+            if(result == "Try"){
+                return (
+                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={setBlur(0.5)}>
+                        <View style={{
+                            width: '50vw',
+                            height: '30vh', 
+                            backgroundColor: 'oldlace', 
+                            justifyContent: 'space-evenly', 
+                            alignItems: 'center',
+                            borderRadius: 25,
+                            border: '3px solid moccasin'
+                            }}>
+                            <Text style={{
+                                    fontFamily: 'Arvo-Bold, serif',
+                                    fontWeight: 'bold',
+                                    fontSize: 'x-large'
+                                }}>Try Again!</Text>
+                            <Text>
+                                Your guess was {distance} meters away!
+                            </Text>
+                            <Pressable onPress={() => {console.log("clicked");setResult("Pending");setReady(false);setBlur(1)}} 
+                                style={{
+                                    width: '20%',
+                                    height: '15%',
+                                    backgroundColor: 'moccasin',
+                                    borderRadius: '15px',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}>
+                                <Text style={{
+                                    fontFamily: 'Arvo-Bold, serif',
+                                    fontWeight: 'bold'
+                                }}>Try Again</Text>
+                            </Pressable>
+                        </View> 
+                    </View>
+                );
+
+            }
+            if(result == "Lost"){
+                return (
+                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={setBlur(0.5)}>
+                        <View style={{
+                            width: '50vw',
+                            height: '30vh', 
+                            backgroundColor: 'oldlace', 
+                            justifyContent: 'space-evenly', 
+                            alignItems: 'center',
+                            borderRadius: 25,
+                            border: '3px solid moccasin'
+                            }}>
+                            <Text style={{
+                                    fontFamily: 'Arvo-Bold, serif',
+                                    fontWeight: 'bold',
+                                    fontSize: 'x-large'
+                                }}>You Lost!</Text>
+                            <Text>
+                                Your last guess was {distance} meters away! Do you want to play again?
+                            </Text>
+                            <Pressable onPress={() => {console.log("clicked");setResult("Pending");setReady(false);setBlur(1);setAttempt(0)}} 
+                                style={{
+                                    width: '20%',
+                                    height: '15%',
+                                    backgroundColor: 'moccasin',
+                                    borderRadius: '15px',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}>
+                                <Text style={{
+                                    fontFamily: 'Arvo-Bold, serif',
+                                    fontWeight: 'bold'
+                                }}>Play Again</Text>
+                            </Pressable>
+                        </View> 
+                    </View>
+                );
+            }
+            
         }else {
             return;
         }
@@ -87,8 +173,11 @@ export default function GuessSpot()  {
                                 fontWeight: 'bold',
                                 fontSize: 'x-large'
                             }}>How to Play</Text>
-                        <Text>
-                            Guess where the picture was taken by selecting a point on the map.
+                        <Text style={{fontFamily: 'Arvo-Bold', 
+                                      color: 'gray',
+                                      
+                                }}>
+                            Guess where the picture was taken by selecting a point on the map. You get 3 attempts.
                         </Text>
                         <Pressable onPress={() => {console.log("clicked");setShowInfoPanel(false);setBlur(1);}} 
                             style={{
@@ -115,9 +204,6 @@ export default function GuessSpot()  {
 
 
     return (
-
-        
-        
         <View style={{height: '100vh'}}>
             <PopUp/>
             <ResultWindow/>
@@ -129,6 +215,9 @@ export default function GuessSpot()  {
                         <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em'}}>Login</Text>
                     </Pressable>
                 </View>
+                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={{textAlign: 'center', fontSize: 'x-large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em', borderBlockColor: 'lightgray'}}> Attempts: {attmp} </Text>
+                </View>
 
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
                     <View>
@@ -136,7 +225,7 @@ export default function GuessSpot()  {
                     </View>
 
                     <View style={{margin: '4em', alignSelf: 'end'}}>
-                        <GuessMap location={imgLocation} resSetter={setResult} setReady={setReady}/>
+                        <GuessMap location={imgLocation} resSetter={setResult} setReady={setReady} setAttempt={setAttempt} atmp={attmp} setDist={setDistance}/>
                     </View>
                 </View>
 
