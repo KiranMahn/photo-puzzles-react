@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { View , Text, Pressable, Image } from 'react-native';
 import GuessMap from './GuessMap';
 import myData from './PhotoDetails.json';
+import JSConfetti from 'js-confetti';
 let id = 0;
 
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
@@ -37,7 +38,9 @@ export default function GuessSpot(props)  {
 
     const[loc, setLoc] = useState(imgLocation);
     const[src, setSrc] = useState(imageSrc);
-    
+    const canvas = this;
+    const jsConfetti = new JSConfetti({canvas});
+   
     const resetGame = () => {
         setResult("Pending");
         setReady(false);
@@ -81,6 +84,16 @@ export default function GuessSpot(props)  {
         if(ready) {
             console.log("displaying result panel");
             if(result == "Win"){
+                jsConfetti.addConfetti({
+                    emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
+                 })
+                 jsConfetti.addConfetti({
+                    confettiRadius: 6,
+                  })
+                  jsConfetti.addConfetti({
+                    confettiRadius: 6,
+                    confettiNumber: 500,
+                  })
                 return (
                     <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
                         <View style={{
