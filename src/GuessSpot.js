@@ -10,7 +10,7 @@ let imgLocation = "[56.6577495263809, -4.635479507522097]";
 let imageSrc = './scotland.png';
 
 // choose random number
-id = Math.floor(Math.random() * 5);
+id = Math.floor(Math.random() * 7);
 console.log("id: " + id);
 // get image with that id
 
@@ -41,9 +41,9 @@ export default function GuessSpot(props)  {
     const resetGame = () => {
         setResult("Pending");
         setReady(false);
-        let nextId = Math.floor(Math.random() * 5);
+        let nextId = Math.floor(Math.random() * 7);
         while(nextId == id) {
-            nextId = Math.floor(Math.random() * 5);
+            nextId = Math.floor(Math.random() * 7);
         }
         id = nextId;
         
@@ -273,7 +273,7 @@ export default function GuessSpot(props)  {
 
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
                     <View>
-                        <Image source={src} style={{width: '30vw', height: '30vw', margin: '2em'}}/>
+                        <Image source={src} style={{width: '40vw', height: '30vw', margin: '2em'}}/>
                     </View>
 
                     <View style={{margin: '4em', alignSelf: 'end'}}>

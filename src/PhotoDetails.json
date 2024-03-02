@@ -17,13 +17,23 @@
         },
         {
             "src": "https://lh3.googleusercontent.com/pw/AP1GczOfgSajakfuGl_6fX7bTePUUq4yiS23ElGSVAFE8cSWwVMF-wy1458o3g7IFA5FBGzJjMehqP7TCWKwcfi4CChJ7jFZxSsKLyW5O5E_0-BljNfQS3Yt=w2400",
-            "location": "[6.508461, 3.383508]",
+            "location": "[37.121569, -8.624124]",
             "id": "3"
         },
         {
             "src": "https://lh3.googleusercontent.com/pw/AP1GczPBCgG6AYcN3e6pTkyYoroUxq_uXMz_ORE_egs9X9sJXaU-toPg39zJO-Tp-XgdRBBM0Rd61R1js-KFzFAYRKtY_WXKId_8QQYDDpLAOQGSDISeXUAZ=w2400",
             "location": "[56.6577495263809, -4.635479507522097]",
             "id": "4"
+        },
+        {
+            "src": "https://lh3.googleusercontent.com/pw/AP1GczO88s1fCGYXQegoUC4mIrSkXgu1lNcA2bQ5PQF3Y5V620Bw5ABMiWZxf7j1Fxw5aLznezjI4kBIbGn4eT3qruMSNreSMgVGQ4TU_428KxKpTXjbI7Ju=w2400",
+            "location": "[57.893878, -5.145459]",
+            "id": "5"
+        },
+        {
+            "src": "https://lh3.googleusercontent.com/pw/AP1GczNHtizu1ALB1SAcdpBAVwBnRHSCDxLQIbkgzcYeJ901JxAD-KpKSVqT0a0q_4BBRmO9boPQTHa9XKHcwIXt_tlOg8nMc6B8KGdlaS7Rrc9KXMuyvRqi=w2400",
+            "location": "[38.958099, -120.101981]",
+            "id": "6"
         }
     ]
 }
