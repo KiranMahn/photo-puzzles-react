@@ -117,6 +117,7 @@ function GuessMap(props) {
       console.log("you win!!!");
       props.resSetter("Win");
       props.setReady(true);
+      props.setScore(props.score + 1);
       for (let i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
       }

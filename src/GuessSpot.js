@@ -35,12 +35,11 @@ export default function GuessSpot(props)  {
     const [attmp, setAttempt] = useState(0);
 
     const [distance, setDistance] = useState(0);
-
+    const[score, setScore] = useState(0);
     const[loc, setLoc] = useState(imgLocation);
     const[src, setSrc] = useState(imageSrc);
     const canvas = this;
     const jsConfetti = new JSConfetti({canvas});
-   
     const resetGame = () => {
         setResult("Pending");
         setReady(false);
@@ -149,7 +148,7 @@ export default function GuessSpot(props)  {
                                     fontSize: 'x-large'
                                 }}>Try Again!</Text>
                             <Text>
-                                Your guess was {distance} meters away!
+                                Your guess was {distance} miles away!
                             </Text>
                             <Pressable onPress={() => {resetGame();}} 
                                 style={{
@@ -280,8 +279,10 @@ export default function GuessSpot(props)  {
                         <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em'}}>Login</Text>
                     </Pressable>
                 </View>
+                
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={{textAlign: 'center', fontSize: 'x-large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em', borderBlockColor: 'lightgray'}}> Attempts: {attmp} </Text>
+                    <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em', marginRight: '10%'}}>Score: {score}</Text>
+                    <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em', borderBlockColor: 'lightgray'}}> Attempts: {attmp} </Text>
                 </View>
 
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
@@ -290,7 +291,7 @@ export default function GuessSpot(props)  {
                     </View>
 
                     <View style={{margin: '4em', alignSelf: 'end'}}>
-                        <GuessMap location={loc} resSetter={setResult} setReady={setReady} setAttempt={setAttempt} atmp={attmp} setDist={setDistance}/>
+                        <GuessMap location={loc} resSetter={setResult} setReady={setReady} setAttempt={setAttempt} atmp={attmp} setDist={setDistance} setScore={setScore} score={score}/>
                     </View>
                 </View>
 
