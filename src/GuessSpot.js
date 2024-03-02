@@ -8,6 +8,7 @@ export default function GuessSpot()  {
     let imgLocation = "[56.6577495263809, -4.635479507522097]";
     const [blur, setBlur] = useState(0.5);
     const [result, setResult] = useState(false);
+    const [ready, setReady] = useState(false);
     // get rnd id
     const getRndImage = () => {
         console.log("Blur: " + blur);
@@ -18,13 +19,16 @@ export default function GuessSpot()  {
     const [showInfoPanel, setShowInfoPanel] = useState(true);
     const getResult = (result) => {
         if(result) {
+            console.log("winner")
             return "Win!";
         } else {
+            console.log("loser")
             return "Lose!";
         }
     }
     const ResultWindow = () => {
-        if(result) {
+        if(ready) {
+            console.log("displaying result panel");
             return (
                 <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
                     <View style={{
@@ -40,11 +44,11 @@ export default function GuessSpot()  {
                                 fontFamily: 'Arvo-Bold, serif',
                                 fontWeight: 'bold',
                                 fontSize: 'x-large'
-                            }}>You {() => getResult(result)}</Text>
+                            }}>You {getResult(result)}</Text>
                         <Text>
                             Do you want to play again?
                         </Text>
-                        <Pressable onPress={() => {console.log("clicked");setResult(false);setBlur(1);}} 
+                        <Pressable onPress={() => {console.log("clicked");setResult(false);setReady(false);setBlur(1)}} 
                             style={{
                                 width: '20%',
                                 height: '15%',
@@ -61,6 +65,8 @@ export default function GuessSpot()  {
                     </View> 
                 </View>
             );
+        }else {
+            return;
         }
     }
     const PopUp = () => {
@@ -130,7 +136,7 @@ export default function GuessSpot()  {
                     </View>
 
                     <View style={{margin: '4em', alignSelf: 'end'}}>
-                        <GuessMap location={imgLocation} />
+                        <GuessMap location={imgLocation} resSetter={setResult} setReady={setReady}/>
                     </View>
                 </View>
 

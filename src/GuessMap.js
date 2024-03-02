@@ -7,7 +7,8 @@ import React from "react";
 
 function GuessMap(props) {
     const [map, setMap] = React.useState(null)
-    const [result, setResult] = useState(false);
+    const setResult = props.setResult;
+    const setReady = props.setReady;
     var imgLocation;
     
     let mrk;
@@ -103,8 +104,11 @@ function GuessMap(props) {
     console.log("diff: " + diff);
     if(diff < 100000){
       console.log("you win!!!");
-      setResult(true);
+      props.resSetter(true);
+    } else {
+      props.resSetter(false);
     }
+    props.setReady(true);
   }
   return isLoaded ? (
       <GoogleMap
