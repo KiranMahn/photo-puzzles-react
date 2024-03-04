@@ -34,6 +34,17 @@
             "src": "./SnowyForest.jpg",
             "location": "[38.958099, -120.101981]",
             "id": "6"
+        },
+        {
+            "src": "https://lh3.googleusercontent.com/pw/AP1GczNMfw6h5ADBEUm_IPT0BBv3T2HAE69dEcHdS8Xkk_7l5eybJgQlyBln9GVXaGdB2_kd1ca6ExKkRQ8Z7HJh8xk3NUtGIzGS5mtAz8pzkiYyvKiC1tzR=w2400",
+            "location": "[37.366040, -122.158854]",
+            "id": "7"
+        },
+        {
+            "src": "https://lh3.googleusercontent.com/pw/AP1GczPdJxs-WvqCyc8pSv0UkHeIAiBs6gR7CIoxEKPuDlD4B4k_m2tgdw0tkvHqBWW9xdYuePeyt0tJ1fkvieEaALiTmSFTyK0EsABaU4p5hTeJxayRebJH=w2400",
+            "location": "[37.366040, -122.158854]",
+            "id": "8"
         }
+
     ]
 }
