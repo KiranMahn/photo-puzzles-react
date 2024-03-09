@@ -6,13 +6,14 @@ import GuessMap from './GuessMap';
 import myData from './PhotoDetails.json';
 import JSConfetti from 'js-confetti';
 let id = 0;
-
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
 let imageSrc = './scotland.png';
-
+let numImages = 9;
 // choose random number
 id = Math.floor(Math.random() * 9);
 console.log("id: " + id);
+let imgIds = [id]
+
 // get image with that id
 
 imgLocation = myData["images"][id]["location"];
@@ -23,14 +24,13 @@ console.log("imageSrc: " + imageSrc);
 
 export default function GuessSpot(props)  {
     console.log(myData);
-
     const [blur, setBlur] = useState(0.5);
     // result is true for win or false for lost
     const [result, setResult] = useState("Pending");
 
     // ready is true when user wins or has guess wrong 3 times in a row
     const [ready, setReady] = useState(false);
-
+    let imgHistory = []
     // atmp is increased with each click
     const [attmp, setAttempt] = useState(0);
 
@@ -40,15 +40,28 @@ export default function GuessSpot(props)  {
     const[src, setSrc] = useState(imageSrc);
     const canvas = this;
     const jsConfetti = new JSConfetti({canvas});
+
     const resetGame = () => {
         setResult("Pending");
         setReady(false);
         let nextId = Math.floor(Math.random() * 9);
+        if(imgIds.length == numImages) {
+            setResult("over");
+            setReady(true);
+
+            jsConfetti.addConfetti({
+                confettiRadius: 6,
+              })
+              jsConfetti.addConfetti({
+                confettiRadius: 6,
+                confettiNumber: 500,
+              })
+        }
         while(nextId == id) {
             nextId = Math.floor(Math.random() * 9);
         }
         id = nextId;
-        
+        imgIds.push(id);
         console.log("newid:" + id);
         imgLocation = myData["images"][id]["location"];
         setLoc(imgLocation);
@@ -207,6 +220,31 @@ export default function GuessSpot(props)  {
                     </View>
                 );
             }
+            if(result == "over"){
+                return (
+                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
+                        <View style={{
+                            width: '50vw',
+                            height: '30vh', 
+                            backgroundColor: 'oldlace', 
+                            justifyContent: 'space-evenly', 
+                            alignItems: 'center',
+                            borderRadius: 25,
+                            border: '3px solid moccasin'
+                            }}>
+                            <Text style={{
+                                    fontFamily: 'Arvo-Bold, serif',
+                                    fontWeight: 'bold',
+                                    fontSize: 'x-large'
+                                }}>Game Over!</Text>
+                            <Text>
+                                Total Score: {score} / {numImages}
+                            </Text>
+
+                        </View> 
+                    </View>
+                );
+            }
             
         }else {
             return;
@@ -279,9 +317,11 @@ export default function GuessSpot(props)  {
                     </Pressable>
                 </View>
                 
-                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em', marginRight: '10%'}}>Score: {score}</Text>
+                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly'}}>
+                    <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em'}}>Score: {score}</Text>
                     <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em', borderBlockColor: 'lightgray'}}> Attempts: {attmp} </Text>
+                    <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em', borderBlockColor: 'lightgray'}}> Round: {imgIds.length} / {numImages}</Text>
+
                 </View>
 
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
