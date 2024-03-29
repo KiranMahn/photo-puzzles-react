@@ -3,47 +3,102 @@
         {
             "src": "./scotland.png",
             "location": "[56.6577495263809, -4.635479507522097]",
-            "id": "0"
+            "id": "0",
+            "trivia": {
+                "question": "What is Scotland's national animal?",
+                "choices": ["Haggis", "Centaur", "Highland Cow", "Unicorn"],
+                "type": "MCQs",
+                "correctAnswer":"Unicorn"
+            }
+            
         },
         {
             "src": "https://lh3.googleusercontent.com/pw/AP1GczMbCI1aGQnPhas0qPI2J_bHNT1OMfTmthLc_xVY54rpT_2pYh1KJvNs6ofYH5OYmUnQ53mgoo082ERxx2jkaVV5goWFrrWGetj3X3-7e4Hh8cgd1ONC=w2400",
             "location": "[38.958099, -120.101981]",
-            "id": "1"
+            "id": "1",
+            "trivia": {
+                "question": "Which two states is Lake Tahoe in?",
+                "choices": ["Yosemite % Arizona", "Oregan & Washington", "California & Nevada", "None of the above"],
+                "type": "MCQs",
+                "correctAnswer":"California & Nevada"
+            }
         },
         {
             "src": "https://lh3.googleusercontent.com/pw/AP1GczMmxu8gwDLXU5pWFDuaQ9oqcAbtRCKKj-0u4QOoa-QEWTzVhPzpU9BEyEToOW73CdMNO7bxn9NTG_7UmmaJH-kz8jurnXTEJ-Oy4XK5GvOE8n9ZIyg9=w2400",
             "location": "[31.619896, 74.877579]",
-            "id": "2"
+            "id": "2",
+            "trivia": {
+                "question": "What religion is the golden temple made for?",
+                "choices": ["Sihkism", "hinduism", "bhudism", "None of the above"],
+                "type": "MCQs",
+                "correctAnswer":"Sihkism"
+            }
         },
         {
             "src": "https://lh3.googleusercontent.com/pw/AP1GczOfgSajakfuGl_6fX7bTePUUq4yiS23ElGSVAFE8cSWwVMF-wy1458o3g7IFA5FBGzJjMehqP7TCWKwcfi4CChJ7jFZxSsKLyW5O5E_0-BljNfQS3Yt=w2400",
             "location": "[37.121569, -8.624124]",
-            "id": "3"
+            "id": "3",
+            "trivia": {
+                "question": "What country is Faro in?",
+                "choices": ["Spain", "Portugal", "Italy", "Greece"],
+                "type": "MCQs",
+                "correctAnswer":"Portugal"
+            }
         },
         {
             "src": "https://lh3.googleusercontent.com/pw/AP1GczPBCgG6AYcN3e6pTkyYoroUxq_uXMz_ORE_egs9X9sJXaU-toPg39zJO-Tp-XgdRBBM0Rd61R1js-KFzFAYRKtY_WXKId_8QQYDDpLAOQGSDISeXUAZ=w2400",
             "location": "[56.6577495263809, -4.635479507522097]",
-            "id": "4"
+            "id": "4",
+            "trivia": {
+                "question": "How many different species of biting midge are there in Scotland?",
+                "choices": ["20", "35", "3", "17"],
+                "type": "MCQs",
+                "correctAnswer":"35"
+            }
         },
         {
             "src": "https://lh3.googleusercontent.com/pw/AP1GczO88s1fCGYXQegoUC4mIrSkXgu1lNcA2bQ5PQF3Y5V620Bw5ABMiWZxf7j1Fxw5aLznezjI4kBIbGn4eT3qruMSNreSMgVGQ4TU_428KxKpTXjbI7Ju=w2400",
             "location": "[57.893878, -5.145459]",
-            "id": "5"
+            "id": "5",
+            "trivia": {
+                "question": "What percent of the human brain is water?",
+                "choices": ["75%", "50%", "30%", "90%"],
+                "type": "MCQs",
+                "correctAnswer":"75%"
+            }
         },
         {
             "src": "./SnowyForest.jpg",
             "location": "[38.958099, -120.101981]",
-            "id": "6"
+            "id": "6",
+            "trivia": {
+                "question": "What percent of snow is trapped air?",
+                "choices": ["90%", "10%", "5%", "80%"],
+                "type": "MCQs",
+                "correctAnswer":"90%"
+            }
         },
         {
             "src": "https://lh3.googleusercontent.com/pw/AP1GczNMfw6h5ADBEUm_IPT0BBv3T2HAE69dEcHdS8Xkk_7l5eybJgQlyBln9GVXaGdB2_kd1ca6ExKkRQ8Z7HJh8xk3NUtGIzGS5mtAz8pzkiYyvKiC1tzR=w2400",
             "location": "[37.366040, -122.158854]",
-            "id": "7"
+            "id": "7",
+            "trivia": {
+                "question": "How many bones do horses have in their skeleton?",
+                "choices": ["205", "240", "320", "455"],
+                "type": "MCQs",
+                "correctAnswer":"205"
+            }
         },
         {
             "src": "https://lh3.googleusercontent.com/pw/AP1GczPdJxs-WvqCyc8pSv0UkHeIAiBs6gR7CIoxEKPuDlD4B4k_m2tgdw0tkvHqBWW9xdYuePeyt0tJ1fkvieEaALiTmSFTyK0EsABaU4p5hTeJxayRebJH=w2400",
             "location": "[37.366040, -122.158854]",
-            "id": "8"
+            "id": "8",
+            "trivia": {
+                "question": "What type of trees are in this photo?",
+                "choices": ["Birch", "Eucalyptus", "Oak", "Acaica"],
+                "type": "MCQs",
+                "correctAnswer":"Eucalyptus"
+            }
         }
 
     ]
