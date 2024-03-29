@@ -7,6 +7,9 @@ let imgLocation = "[56.6577495263809, -4.635479507522097]";
 
 const Quiz = (props) => {
   let imgOrder = props.imgOrder;
+  let setPTResult = props.setResult;
+  let setReady = props.setReady;
+  let finalResult = props.result;
   let currentId = imgOrder[idIndex];
   let setCurrId = props.setCurrId;
   imgLocation = myData["images"][currentId]["location"];
@@ -26,6 +29,14 @@ const Quiz = (props) => {
     correctAnswers: 0,
     wrongAnswers: 0,
   })
+
+  if(finalResult == "Win") {
+    setResult({
+      score: 0,
+      correctAnswers: 0,
+      wrongAnswers: 0,
+    });
+  }
 
   // const { questions } = quiz
   // const { question, choices, correctAnswer } = questions[activeQuestion]
@@ -52,6 +63,12 @@ const Quiz = (props) => {
       setActiveQuestion(imgOrder[idIndex])
     } else {
       setActiveQuestion(imgOrder[idIndex])
+      if(result.correctAnswers >= 6) {
+        setPTResult("Win");
+      } else {
+        setPTResult("Lost");
+      }
+      setReady(true);
       setShowResult(true)
     }
   }

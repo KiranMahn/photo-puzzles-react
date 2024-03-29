@@ -15,7 +15,6 @@ body {
   background: #ffffff;
   border-radius: 4px;
   padding: 30px 60px;
-  margin-left: 10;
 }
 
 .quiz-container .active-question-no {
@@ -79,7 +78,7 @@ body {
 
 .flex-right {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .result h3 {

@@ -58,7 +58,7 @@ export default function PictureTrivia(props)  {
     let imgHistory = []
     // atmp is increased with each click
     const [attmp, setAttempt] = useState(0);
-
+    const [reset, setReset] = useState(false);
     const [distance, setDistance] = useState(0);
     const[score, setScore] = useState(0);
     const[loc, setLoc] = useState(imgLocation);
@@ -66,6 +66,10 @@ export default function PictureTrivia(props)  {
     const jsConfetti = new JSConfetti({canvas});
     // imageSrc = myData["images"][currId]["src"];
     const[src, setSrc] = useState(myData["images"][currId]["src"]);
+
+    if(reset) {
+        resetGame();
+    }
 
     const resetGame = () => {
         setResult("Pending");
@@ -144,7 +148,7 @@ export default function PictureTrivia(props)  {
                                     fontSize: 'x-large'
                                 }}>You Win!</Text>
                             <Text>
-                                It took you {attmp} attemps! Do you want to play again?
+                                Do you want to play again?
                             </Text>
                             <Pressable onPress={() => {resetGame();}} 
                                 style={{
@@ -221,7 +225,7 @@ export default function PictureTrivia(props)  {
                                     fontSize: 'x-large'
                                 }}>You Lost!</Text>
                             <Text>
-                                Your last guess was {distance} miles away! Do you want to play again?
+                                Do you want to play again?
                             </Text>
                             <Pressable onPress={() => {resetGame();}} 
                                 style={{
@@ -297,7 +301,7 @@ export default function PictureTrivia(props)  {
                                       letterSpacing: 1,
                                       
                                 }}>
-                            Guess where the picture was taken by selecting a point on the map. You get 3 attempts. Your guess must be within 500 miles of the photo.
+                            Answer the trivia questions related to the photos on the left. You only get one attempt at each question. Each question is worth 5 points. Get 6/9 correct to win!
                         </Text>
                         <Pressable onPress={() => {console.log("clicked");setShowInfoPanel(false);setBlur(1);}} 
                             style={{
@@ -323,7 +327,7 @@ export default function PictureTrivia(props)  {
     // setSrc(myData["images"][currId]["src"]);
     console.log("src: " + src);
     return (
-        <View style={{height: '100vh'}} onload={() => resetGame}>
+        <View style={{height: '100vh', display: 'flex'}} onload={() => resetGame}>
             <PopUp/>
             <ResultWindow/>
             <View style={{height: '100vh', opacity:blur}}>
@@ -338,17 +342,17 @@ export default function PictureTrivia(props)  {
                     </Pressable>
                 </View>
 
-                <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'flex-start'}}>
+                <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', width: '100%'}}>
                     <View>
                         <Image source={myData["images"][currId]["src"]} style={{width: '40vw', height: '30vw', margin: '2em'}}/>
                     </View>
 
                     <View style={{margin: 2, alignSelf: 'end'}}>
-                        <Quiz id={id} imgOrder={imgOrder} setCurrId={setCurrId}/>
+                        <Quiz id={id} imgOrder={imgOrder} setCurrId={setCurrId} setReady={setReady} setResult={setResult} result={result} setReset={setReset}/>
                     </View>
                 </View>
 
-                <View style={{position: 'absolute', bottom: 0, display: 'flex', width: '100vw', alignItems: 'flex-end', height: '5%'}}>
+                <View style={{position: 'absolute', bottom: 0, display: 'flex', width: '100%', alignItems: 'flex-end', height: '5%'}}>
                     <Pressable style={{margin: '2em'}} onPress={() => {setShowInfoPanel(true); setBlur(0.5)}}>
                         <Text style={{fontSize: 'x-large', margin: '1em', fontWeight: 'bold'}}>?</Text>
                     </Pressable>
