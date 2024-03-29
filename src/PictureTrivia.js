@@ -65,36 +65,28 @@ export default function PictureTrivia(props)  {
     const canvas = this;
     const jsConfetti = new JSConfetti({canvas});
     // imageSrc = myData["images"][currId]["src"];
-    const[src, setSrc] = useState(myData["images"][currId]["src"]);
-
-    if(reset) {
-        resetGame();
-    }
+    const [src, setSrc] = useState(myData["images"][currId]["src"]);
 
     const resetGame = () => {
+        setReset(true);
         setResult("Pending");
         setReady(false);
-        let nextId = Math.floor(Math.random() * 9);
-        if(imgIds.length == numImages) {
-            setResult("over");
-            setReady(true);
-
-            jsConfetti.addConfetti({
-                confettiRadius: 6,
-              })
-              jsConfetti.addConfetti({
-                confettiRadius: 6,
-                confettiNumber: 500,
-              })
+        idIndex = 0;
+        // choose random number
+        id = Math.floor(Math.random() * 9);
+        let imgOrder = []
+        for(let i = 0; i < numImages; i++) {
+            imgOrder.push(i)
         }
-        console.log("newid:" + currId);
-        imgLocation = myData["images"][currId]["location"];
-        setLoc(imgLocation);
-        imageSrc = myData["images"][currId]["src"];
-        setSrc(imageSrc);
+        shuffle(imgOrder);
+        id = imgOrder[0];
+        // get image with that id
+
+        imgLocation = myData["images"][id]["location"];
+        console.log("imageLocation: " + imgLocation);
+
+        imageSrc = myData["images"][id]["src"];
         console.log("imageSrc: " + imageSrc);
-        console.log("clicked");
-        
         setBlur(1);
         setAttempt(0);
     }
@@ -348,7 +340,7 @@ export default function PictureTrivia(props)  {
                     </View>
 
                     <View style={{margin: 2, alignSelf: 'end'}}>
-                        <Quiz id={id} imgOrder={imgOrder} setCurrId={setCurrId} setReady={setReady} setResult={setResult} result={result} setReset={setReset}/>
+                        <Quiz id={id} imgOrder={imgOrder} setCurrId={setCurrId} setReady={setReady} setResult={setResult} result={result} reset={reset} setReset={setReset}/>
                     </View>
                 </View>
 

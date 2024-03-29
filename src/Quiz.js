@@ -10,6 +10,8 @@ const Quiz = (props) => {
   let setPTResult = props.setResult;
   let setReady = props.setReady;
   let finalResult = props.result;
+  let reset = props.reset;
+  let setReset = props.setReset;
   let currentId = imgOrder[idIndex];
   let setCurrId = props.setCurrId;
   imgLocation = myData["images"][currentId]["location"];
@@ -30,13 +32,20 @@ const Quiz = (props) => {
     wrongAnswers: 0,
   })
 
-  if(finalResult == "Win") {
-    setResult({
-      score: 0,
-      correctAnswers: 0,
-      wrongAnswers: 0,
-    });
-  }
+  // const resetMe = () => {
+  //   setResult({
+  //     score: 0,
+  //     correctAnswers: 0,
+  //     wrongAnswers: 0,
+  //   });
+  //   setReset(false);
+  // }
+
+  // if(reset) {
+  //   console.log("resetting...")
+  //   resetMe();
+    
+  // }
 
   // const { questions } = quiz
   // const { question, choices, correctAnswer } = questions[activeQuestion]
