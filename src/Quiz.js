@@ -2,10 +2,13 @@ import { useState } from 'react'
 import { quiz } from './data/questions'
 import './quiz.css'
 import myData from './PhotoDetails.json';
+let idIndex = 0;
+let imgLocation = "[56.6577495263809, -4.635479507522097]";
 
 const Quiz = (props) => {
-  let currentId = props.id;
-  let imgLocation = "[56.6577495263809, -4.635479507522097]";
+  let imgOrder = props.imgOrder;
+  let currentId = imgOrder[idIndex];
+  let setCurrId = props.setCurrId;
   imgLocation = myData["images"][currentId]["location"];
   let trivia = myData["images"][currentId]["trivia"];
   const { question, choices, correctAnswer } = trivia;
@@ -24,7 +27,7 @@ const Quiz = (props) => {
     wrongAnswers: 0,
   })
 
-  const { questions } = quiz
+  // const { questions } = quiz
   // const { question, choices, correctAnswer } = questions[activeQuestion]
   const onClickNext = () => {
     console.log("pressed")
@@ -38,10 +41,17 @@ const Quiz = (props) => {
           }
         : { ...prev, wrongAnswers: prev.wrongAnswers + 1 }
     )
+  
     if (activeQuestion !== numImages - 1) {
-      setActiveQuestion((prev) => prev + 1)
+      console.log("switching...");
+      idIndex++;
+      console.log("old id: " + currentId)
+      setCurrId(imgOrder[idIndex])
+      console.log("new id: " + imgOrder[idIndex])
+
+      setActiveQuestion(imgOrder[idIndex])
     } else {
-      setActiveQuestion(0)
+      setActiveQuestion(imgOrder[idIndex])
       setShowResult(true)
     }
   }
@@ -63,7 +73,7 @@ const Quiz = (props) => {
         <div>
           <div>
             <span className="active-question-no">{addLeadingZero(activeQuestion + 1)}</span>
-            <span className="total-question">/{addLeadingZero(questions.length)}</span>
+            <span className="total-question">/{addLeadingZero(imgOrder.length)}</span>
           </div>
           <h2>{question}</h2>
           <ul>
@@ -78,7 +88,7 @@ const Quiz = (props) => {
           </ul>
           <div className="flex-right">
             <button onClick={onClickNext} disabled={selectedAnswerIndex === null}>
-              {activeQuestion === questions.length - 1 ? 'Finish' : 'Next'}
+              {activeQuestion === imgOrder.length - 1 ? 'Finish' : 'Next'}
             </button>
           </div>
         </div>
@@ -86,7 +96,7 @@ const Quiz = (props) => {
         <div className="result">
           <h3>Result</h3>
           <p>
-            Total Question: <span>{questions.length}</span>
+            Total Question: <span>{imgOrder.length}</span>
           </p>
           <p>
             Total Score:<span> {result.score}</span>

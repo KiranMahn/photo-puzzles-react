@@ -7,6 +7,7 @@ import myData from './PhotoDetails.json';
 import JSConfetti from 'js-confetti';
 import Quiz from './Quiz';
 let id = 0;
+let idIndex = 0;
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
 let imageSrc = './scotland.png';
 let numImages = 9;
@@ -15,6 +16,28 @@ id = Math.floor(Math.random() * 9);
 console.log("id: " + id);
 let imgIds = [id]
 
+let imgOrder = []
+for(let i = 0; i < numImages; i++) {
+    imgOrder.push(i)
+}
+function shuffle(array) {
+    let currentIndex = array.length;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+}
+
+shuffle(imgOrder);
+id = imgOrder[0];
 // get image with that id
 
 imgLocation = myData["images"][id]["location"];
@@ -26,9 +49,10 @@ console.log("imageSrc: " + imageSrc);
 export default function PictureTrivia(props)  {
     console.log(myData);
     const [blur, setBlur] = useState(0.5);
+    const [currId, setCurrId] = useState(id);
     // result is true for win or false for lost
     const [result, setResult] = useState("Pending");
-
+    console.log("currId in pt: " + currId)
     // ready is true when user wins or has guess wrong 3 times in a row
     const [ready, setReady] = useState(false);
     let imgHistory = []
@@ -38,9 +62,10 @@ export default function PictureTrivia(props)  {
     const [distance, setDistance] = useState(0);
     const[score, setScore] = useState(0);
     const[loc, setLoc] = useState(imgLocation);
-    const[src, setSrc] = useState(imageSrc);
     const canvas = this;
     const jsConfetti = new JSConfetti({canvas});
+    // imageSrc = myData["images"][currId]["src"];
+    const[src, setSrc] = useState(myData["images"][currId]["src"]);
 
     const resetGame = () => {
         setResult("Pending");
@@ -58,15 +83,10 @@ export default function PictureTrivia(props)  {
                 confettiNumber: 500,
               })
         }
-        while(nextId == id) {
-            nextId = Math.floor(Math.random() * 9);
-        }
-        id = nextId;
-        imgIds.push(id);
-        console.log("newid:" + id);
-        imgLocation = myData["images"][id]["location"];
+        console.log("newid:" + currId);
+        imgLocation = myData["images"][currId]["location"];
         setLoc(imgLocation);
-        imageSrc = myData["images"][id]["src"];
+        imageSrc = myData["images"][currId]["src"];
         setSrc(imageSrc);
         console.log("imageSrc: " + imageSrc);
         console.log("clicked");
@@ -300,7 +320,7 @@ export default function PictureTrivia(props)  {
             return;
         }
     }
-
+    // setSrc(myData["images"][currId]["src"]);
     console.log("src: " + src);
     return (
         <View style={{height: '100vh'}} onload={() => resetGame}>
@@ -320,11 +340,11 @@ export default function PictureTrivia(props)  {
 
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'flex-start'}}>
                     <View>
-                        <Image source={src} style={{width: '40vw', height: '30vw', margin: '2em'}}/>
+                        <Image source={myData["images"][currId]["src"]} style={{width: '40vw', height: '30vw', margin: '2em'}}/>
                     </View>
 
                     <View style={{margin: 2, alignSelf: 'end'}}>
-                        <Quiz id={id}/>
+                        <Quiz id={id} imgOrder={imgOrder} setCurrId={setCurrId}/>
                     </View>
                 </View>
 
