@@ -42,7 +42,7 @@ const Quiz = (props) => {
         : { ...prev, wrongAnswers: prev.wrongAnswers + 1 }
     )
   
-    if (activeQuestion !== numImages - 1) {
+    if (idIndex !== numImages - 1) {
       console.log("switching...");
       idIndex++;
       console.log("old id: " + currentId)
@@ -72,7 +72,7 @@ const Quiz = (props) => {
       {!showResult ? (
         <div>
           <div>
-            <span className="active-question-no">{addLeadingZero(activeQuestion + 1)}</span>
+            <span className="active-question-no">{addLeadingZero(idIndex + 1)}</span>
             <span className="total-question">/{addLeadingZero(imgOrder.length)}</span>
           </div>
           <h2>{question}</h2>
