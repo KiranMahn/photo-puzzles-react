@@ -16,7 +16,6 @@ const StoryMode = () => {
     const [currId, setCurrId] = useState(0);
     // result is true for win or false for lost
     const [result, setResult] = useState("Pending");
-    console.log("currId in pt: " + currId)
     // ready is true when user wins or has guess wrong 3 times in a row
     const [ready, setReady] = useState(false);
     let imgHistory = []
@@ -60,7 +59,15 @@ const StoryMode = () => {
             <Image source={myData["images"][id]["src"]} style={{width: 150, height: 100, margin: '2em'}} key={id}/>
         );
         setChosenImages(temp)
-        setIdIndex(idIndex + 2);
+        if((idIndex + 3) < 9) {
+            setIdIndex(idIndex + 2);
+            console.log("idIndex under 9, currently: " + idIndex)
+        }
+        else {
+            console.log("idIndex above 9, currently: " + idIndex)
+            setShowInfoPanel(true)
+            setIdIndex(0)
+        }
     }
     const PopUp = () => {
         if(showInfoPanel) {
