@@ -94,7 +94,7 @@ const StoryMode = () => {
                                       letterSpacing: 1,
                                       
                                 }}>
-                            Choose which picture to go next in your story. 
+                            Choose which picture to go next in your story by clicking on a photo. 
                         </Text>
                         <Pressable onPress={() => {console.log("clicked");setShowInfoPanel(false)}} 
                             style={{
