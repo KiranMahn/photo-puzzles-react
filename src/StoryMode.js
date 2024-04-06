@@ -3,12 +3,16 @@ import { View , Text, Pressable, Image } from 'react-native';
 import myData from './PhotoDetails.json';
 import { useState } from 'react';
 import JSConfetti from 'js-confetti';
+import ShowStory from './ShowStory';
+
 const resetGame = () => {
     return 0;
 }
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
 let idIndex = 0;
 let numImages = 9;
+let chosenImagesIds = []
+
 const StoryMode = () => {
     const [idIndex, setIdIndex] = useState(0);
     console.log(myData);
@@ -32,7 +36,7 @@ const StoryMode = () => {
     // imageSrc = myData["images"][currId]["src"];
     const [src, setSrc] = useState(myData["images"][currId]["src"]);
     const [prompt, setPrompt] = useState("Choose your starting image");
-
+    const [showStory, setShowStory] = useState(false);
     let imgOrder = []
     for(let i = 0; i < numImages; i++) {
         imgOrder.push(i)
@@ -55,6 +59,8 @@ const StoryMode = () => {
     const addImage = (id) => {
         setPrompt("Choose the next image for your story")
         console.log("adding image with id: " + imgOrder[id])
+        chosenImagesIds.push(imgOrder[id]);
+        console.log("chosenImagesIds: " + chosenImagesIds)
         let temp = chosenImages;
         temp.push(
             <Image source={myData["images"][id]["src"]} style={{width: 150, height: 100, margin: '2em'}} key={id}/>
@@ -66,7 +72,8 @@ const StoryMode = () => {
         }
         else {
             console.log("idIndex above 9, currently: " + idIndex)
-            setShowInfoPanel(true)
+            setShowStory(true);
+            // setShowInfoPanel(true)
             setIdIndex(0)
         }
     }
@@ -122,6 +129,8 @@ const StoryMode = () => {
     return (
         <View style={{height: '100vh', display: 'flex'}} onload={() => resetGame}>
             <PopUp/>
+            {showStory && <ShowStory chosenImagesIds={chosenImagesIds}/>}
+            {!showStory && 
             <View style={{height: '100vh', display: 'flex', flexDirection: 'column', opacity: blur}}>
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                     <View style={{margin: '1em', width: '10%'}}>
@@ -158,7 +167,7 @@ const StoryMode = () => {
                         <Text style={{fontSize: 'x-large', margin: '0.5em', fontWeight: 'bold'}}>?</Text>
                     </Pressable>
                 </View>
-            </View>
+            </View>}
             
             
         </View>

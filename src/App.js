@@ -14,7 +14,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* <Navbar /> */}
         <div className="content">
           <Routes>
             <Route exact path="/" element={<Home/>}/>
@@ -22,12 +21,7 @@ function App() {
             <Route exact path="/picturetrivia" element={<PictureTrivia/>}/>
             <Route exact path="/storymode" element={<StoryMode/>}/>
             <Route exact path="/memorygame" element={<MemoryGame/>}/>
-            {/* <Route path="/create">
-              <Create/>
-            </Route>
-            <Route path="/blogs/:id">
-              <BlogDetails/>
-            </Route> */}
+            
             <Route path="*" element={<NotFound/>}/>
             
           </Routes>
