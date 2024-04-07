@@ -9,6 +9,11 @@
                 "choices": ["Haggis", "Centaur", "Highland Cow", "Unicorn"],
                 "type": "MCQs",
                 "correctAnswer":"Unicorn"
+            },
+            "story": {
+                "start": "Once upon a time there was a family driving through the scottish highlands...",
+                "middle": "They were now lost in the scottish highlands! They followed the road and headed towards the light...",
+                "end": "They ended up in the scottish highlands and the highland cows led them safely home. The End"
             }
             
         },
@@ -21,6 +26,11 @@
                 "choices": ["Yosemite % Arizona", "Oregan & Washington", "California & Nevada", "None of the above"],
                 "type": "MCQs",
                 "correctAnswer":"California & Nevada"
+            },
+            "story": {
+                "start": "As dawn broke over Lake Tahoe, Sarah set out on the Tahoe Rim Trail, eager to explore the wilderness that surrounded the azure waters. Unbeknownst to her, lurking within the shadows of the forest, secrets awaited that would test her courage and determination like never before...",
+                "middle": "Halfway through their journey around Lake Tahoe, they stumbled upon an ancient cave hidden deep within the forest, its entrance obscured by overgrown foliage. Intrigued by the possibility of discovering forgotten treasures, they ventured inside, unaware of the perilous challenges that awaited them in the darkness...",
+                "end": "Emerging from the depths of the cave, they emerged victorious, clutching a relic from a forgotten era, their spirit emboldened by the trials they had faced. With the beauty of Lake Tahoe stretching out before them once more, they knew that their adventure had transformed them forever, leaving them with memories as enduring as the mountains themselves."
             }
         },
         {
@@ -32,6 +42,11 @@
                 "choices": ["Sihkism", "hinduism", "bhudism", "None of the above"],
                 "type": "MCQs",
                 "correctAnswer":"Sihkism"
+            },
+            "story": {
+                "start": "Nestled amidst the bustling streets of Amritsar, the Golden Sikh Temple stood as a beacon of serenity, its majestic domes glistening in the sunlight. As Priya approached its ornate gates, she felt a sense of reverence wash over her, knowing that within its sacred walls, lay the heart of her faith...",
+                "middle": "Inside the temple, Priya immersed herself in the soul-stirring hymns echoing through its marble halls, finding solace in the peaceful embrace of devotion. But as evening fell, the tranquility was shattered by the distant rumble of approaching storm clouds, casting a shadow of uncertainty over the sanctuary...",
+                "end": "Undeterred by the brewing tempest, Priya remained steadfast in her prayers, finding strength in the golden glow of the temple's inner sanctum. As the rain subsided and the skies cleared, she emerged from the hallowed grounds, her spirit renewed and her faith unwavering, carrying the light of the Golden Sikh Temple within her soul."
             }
         },
         {
@@ -43,6 +58,11 @@
                 "choices": ["Spain", "Portugal", "Italy", "Greece"],
                 "type": "MCQs",
                 "correctAnswer":"Portugal"
+            },
+            "story": {
+                "start": "The sun-kissed shores of Portugal beckoned to Maria, their golden sands stretching out beneath a sky painted with hues of azure and gold. As she stepped onto the beach in Algarve, the gentle lull of the ocean waves whispered tales of adventure and possibility....",
+                "middle": "Amidst the swaying palm trees and vibrant beach umbrellas, Maria found herself enveloped in the lively energy of the coastal town, where laughter mingled with the scent of freshly grilled seafood. But as the day drifted into dusk, a sense of tranquility descended upon the beach, casting a spell of serenity over the rolling tide....",
+                "end": "With the last rays of sunlight dancing on the horizon, Maria lingered on the shore, her heart filled with the memories of a day well spent. As she watched the waves retreat into the embrace of the ocean, she knew that the beauty of the Portuguese beach would remain etched in her soul forevermore."
             }
         },
         {
@@ -54,6 +74,11 @@
                 "choices": ["20", "35", "3", "17"],
                 "type": "MCQs",
                 "correctAnswer":"35"
+            },
+            "story": {
+                "start": "The misty shores of Loch Ness whispered of ancient mysteries as Emily stood at the water's edge, her imagination ignited by tales of the legendary creature said to lurk beneath the surface. With each ripple on the tranquil lake, she felt a sense of anticipation stirring within her, eager to uncover the secrets hidden within its depths....",
+                "middle": "Venturing out onto the calm waters in a small boat, Emily was captivated by the rugged beauty of the Scottish Highlands that framed the lake's shoreline. As she paddled further into the heart of Loch Ness, the stillness of the surroundings enveloped her, inviting contemplation and introspection....",
+                "end": "As the sun began to dip below the horizon, casting a warm glow over the water, Emily returned to shore with a newfound sense of wonder and awe. Though she had not encountered the elusive creature of legend, the tranquility of Loch Ness had left an indelible mark on her spirit, reminding her of the enduring allure of Scotland's breathtaking landscapes."
             }
         },
         {
@@ -65,6 +90,11 @@
                 "choices": ["75%", "50%", "30%", "90%"],
                 "type": "MCQs",
                 "correctAnswer":"75%"
+            },
+            "story": {
+                "start": "Along the shores of a warm ocean, where the turquoise waves lapped gently against the sandy beach, a group of fairies frolicked in the salty breeze. Their tiny wings glistened in the sunlight, casting colorful reflections on the shimmering surface of the water....",
+                "middle": "With laughter that mingled with the rhythmic melody of the ocean, the fairies danced amidst the swaying palms, their playful antics echoing through the coastal paradise. They wove intricate patterns in the air, enchanting the sea with their magic and filling the beach with an aura of whimsy....",
+                "end": "As the stars emerged in the velvety sky and the moon cast its silvery glow upon the water, the fairies bid adieu to the ocean, their laughter fading into the night. Yet, their presence remained, a cherished memory of a magical evening by the warm and welcoming sea."
             }
         },
         {
@@ -76,6 +106,11 @@
                 "choices": ["90%", "10%", "5%", "80%"],
                 "type": "MCQs",
                 "correctAnswer":"90%"
+            },
+            "story": {
+                "start": "In the heart of a wintry forest, the crisp scent of pine mingled with the soft whisper of falling snowflakes. Sarah ventured deeper into the snowy woods, her footprints leaving a trail of impressions in the pristine white blanket covering the forest floor....",
+                "middle": " As she journeyed through the silent groves, Sarah felt a sense of solitude enveloping her, punctuated only by the occasional call of a distant owl. Yet, despite the cold embrace of the winter landscape, there was a quiet beauty that stirred her soul, filling her with a sense of peace she had long sought...",
+                "end": "As dawn broke, painting the sky with hues of pink and gold, Sarah emerged from the snowy forest, her heart full of memories and her spirit renewed. Though her footsteps may have vanished in the snow, the tranquility of the wintry woods would linger within her, a reminder of the enduring magic found in nature's embrace."
             }
         },
         {
@@ -87,6 +122,11 @@
                 "choices": ["205", "240", "320", "455"],
                 "type": "MCQs",
                 "correctAnswer":"205"
+            },
+            "story": {
+                "start": "In the rolling hills of the countryside, a majestic horse named Luna grazed peacefully, her ebony mane flowing in the breeze. Nearby, a colorful bird named Jasper flitted from branch to branch, filling the air with melodic songs....",
+                "middle": "Luna and Jasper formed an unlikely bond, their friendship forged through shared moments of serenity amidst the tranquil landscape. Together, they traversed fields and forests, their spirits lifted by the freedom of the open skies and the rhythm of hoofbeats against the earth...",
+                "end": "As the seasons changed and time marched on, Luna and Jasper remained steadfast companions, their bond unbreakable. In the golden light of a setting sun, they stood side by side, a testament to the enduring power of friendship that transcends the boundaries of species."
             }
         },
         {
@@ -98,6 +138,11 @@
                 "choices": ["Birch", "Eucalyptus", "Oak", "Acaica"],
                 "type": "MCQs",
                 "correctAnswer":"Eucalyptus"
+            },
+            "story": {
+                "start": "In a sun-drenched summer forest, beams of golden light filtered through the lush canopy, casting enchanting patterns on the forest floor. Amongst the vibrant blooms and dancing leaves, a troupe of fairies fluttered about, their delicate wings shimmering in the warm breeze...",
+                "middle": "As the day stretched on, the forest came alive with the playful laughter and mischievous antics of the fairies, who delighted in their magical realm. They danced through sunbeams and whispered secrets to the trees, weaving enchantments that filled the air with wonder...",
+                "end": "As the sun began to dip below the horizon, painting the sky with hues of orange and pink, the fairies bid farewell to the forest, their ethereal presence fading into the twilight. Yet, their magic lingered, infusing the summer forest with an everlasting sense of enchantment and joy"
             }
         }
 
