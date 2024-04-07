@@ -11,9 +11,9 @@ const resetGame = () => {
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
 let idIndex = 0;
 let numImages = 9;
-let chosenImagesIds = []
 
 const StoryMode = () => {
+    const [chosenImagesIds, setchosenImagesIds] = useState([]);
     const [idIndex, setIdIndex] = useState(0);
     console.log(myData);
     const [blur, setBlur] = useState(0.5);
@@ -58,8 +58,10 @@ const StoryMode = () => {
     }
     const addImage = (id) => {
         setPrompt("Choose the next image for your story")
-        console.log("adding image with id: " + imgOrder[id])
-        chosenImagesIds.push(imgOrder[id]);
+        console.log("adding image with id: " + imgOrder[id]);
+        let ids = chosenImagesIds;
+        ids.push(imgOrder[id]);
+        setchosenImagesIds(ids);
         console.log("chosenImagesIds: " + chosenImagesIds)
         let temp = chosenImages;
         temp.push(
