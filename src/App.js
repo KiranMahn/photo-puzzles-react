@@ -6,6 +6,7 @@ import GuessSpot from './GuessSpot';
 import PictureTrivia from './PictureTrivia';
 import StoryMode from './StoryMode';
 import MemoryGame from './MemoryGame';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
