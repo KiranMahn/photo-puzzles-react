@@ -10,10 +10,21 @@ import JSConfetti from 'js-confetti';
 let firstCard = "";
 let secondCard = "";
 let correctInARow = 0;
+let numImages = parseInt(myData["images"].length);
+
+const Timer = () => {
+    return (
+        <View>
+            <Text>
+                Timer: 
+            </Text>
+        </View>
+    );
+}
 
 const populateOrder = () => {
     let imageOrder = []
-    for(let i = 0; i < 9; i++) {
+    for(let i = 0; i < numImages; i++) {
         imageOrder.push(i);
         imageOrder.push(i);
     }
@@ -39,7 +50,7 @@ const MemoryGame = () => {
     const PopUp = () => {
         if(showInfoPanel) {
             setBlur(0.5);
-            if(correctInARow == 9) {
+            if(correctInARow == numImages) {
                 return (
                     <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
                         <View style={{
@@ -163,7 +174,7 @@ const MemoryGame = () => {
                 correctInARow = 0;
             }
             setFound(undefined);
-            if(correctInARow == 9) {
+            if(correctInARow == numImages) {
                 console.log("you win")
                 jsConfetti.addConfetti({
                     emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],

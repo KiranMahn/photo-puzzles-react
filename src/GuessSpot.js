@@ -8,9 +8,9 @@ import JSConfetti from 'js-confetti';
 let id = 0;
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
 let imageSrc = './scotland.png';
-let numImages = 9;
+let numImages = parseInt(myData["images"].length);
 // choose random number
-id = Math.floor(Math.random() * 9);
+id = Math.floor(Math.random() * numImages);
 console.log("id: " + id);
 let imgIds = [id]
 
@@ -44,7 +44,7 @@ export default function GuessSpot(props)  {
     const resetGame = () => {
         setResult("Pending");
         setReady(false);
-        let nextId = Math.floor(Math.random() * 9);
+        let nextId = Math.floor(Math.random() * numImages);
         if(imgIds.length == numImages) {
             setResult("over");
             setReady(true);
@@ -58,7 +58,7 @@ export default function GuessSpot(props)  {
               })
         }
         while(nextId == id) {
-            nextId = Math.floor(Math.random() * 9);
+            nextId = Math.floor(Math.random() * numImages);
         }
         id = nextId;
         imgIds.push(id);

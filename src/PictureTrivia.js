@@ -10,9 +10,9 @@ let id = 0;
 let idIndex = 0;
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
 let imageSrc = './scotland.png';
-let numImages = 9;
+let numImages = parseInt(myData["images"].length);
 // choose random number
-id = Math.floor(Math.random() * 9);
+id = Math.floor(Math.random() * numImages);
 console.log("id: " + id);
 let imgIds = [id]
 
@@ -73,7 +73,7 @@ const PictureTrivia = (props) => {
         setReady(false);
         idIndex = 0;
         // choose random number
-        id = Math.floor(Math.random() * 9);
+        id = Math.floor(Math.random() * numImages);
         let imgOrder = []
         for(let i = 0; i < numImages; i++) {
             imgOrder.push(i)
@@ -293,7 +293,7 @@ const PictureTrivia = (props) => {
                                       letterSpacing: 1,
                                       
                                 }}>
-                            Answer the trivia questions related to the photos on the left. You only get one attempt at each question. Each question is worth 5 points. Get 6/9 correct to win!
+                            Answer the trivia questions related to the photos on the left. You only get one attempt at each question. Each question is worth 5 points. Get {((numImages/2) + 2)}/{numImages} correct to win!
                         </Text>
                         <Pressable onPress={() => {console.log("clicked");setShowInfoPanel(false);setBlur(1);}} 
                             style={{
