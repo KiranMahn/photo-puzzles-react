@@ -217,7 +217,7 @@ const PictureTrivia = (props) => {
                                     fontSize: 'x-large'
                                 }}>You Lost!</Text>
                             <Text>
-                                Do you want to play again?
+                                Do you want to view your results?
                             </Text>
                             <Pressable onPress={() => {resetGame();}} 
                                 style={{
@@ -231,7 +231,7 @@ const PictureTrivia = (props) => {
                                 <Text style={{
                                     fontFamily: 'Arvo-Bold, serif',
                                     fontWeight: 'bold'
-                                }}>Play Again</Text>
+                                }}>View results</Text>
                             </Pressable>
                         </View> 
                     </View>

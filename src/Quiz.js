@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Text } from 'react-native-web';
 import { quiz } from './data/questions'
 import './quiz.css'
 import myData from './PhotoDetails.json';
@@ -27,6 +28,7 @@ const Quiz = (props) => {
   const [selectedAnswer, setSelectedAnswer] = useState('')
   const [showResult, setShowResult] = useState(false)
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null)
+  const [bgColor, setColor] = useState('aliceblue');
   const [result, setResult] = useState({
     score: 0,
     correctAnswers: 0,
@@ -70,8 +72,10 @@ const Quiz = (props) => {
       setActiveQuestion(imgOrder[idIndex])
       if(result.correctAnswers >= 6) {
         setPTResult("Win");
+        setColor('rgb(57 186 57)');
       } else {
         setPTResult("Lost");
+        setColor('#dc3545');
       }
       setReady(true);
       setShowResult(true)
@@ -117,8 +121,9 @@ const Quiz = (props) => {
       ) : (
         <div className="result">
           <h3>Result</h3>
+          <Text style={{fontWeight: 'bold', color: 'white', fontSize: 'xxx-large', margin: '1em', padding: '1em', backgroundColor: bgColor, justifyContent: 'center', borderRadius: '3.5em', display: 'flex', alignContent: 'center'}}>{Math.round((result.correctAnswers / imgOrder.length) * 100)}%</Text>
           <p>
-            Total Score:<span> {result.score}</span>
+            Total Score:<span> {result.score} / {imgOrder.length * 5}</span>
           </p>
           <p>
             Correct Answers:<span> {result.correctAnswers} / {imgOrder.length}</span>
