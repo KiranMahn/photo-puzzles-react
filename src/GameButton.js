@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Pressable } from 'react-native';
+import { View, Image } from 'react-native-web';
 const GameButton = (props) => {
     const { title, navigation } = props;
     const [linkAddy, setLink] = useState("./guessspot");
@@ -87,14 +88,12 @@ const GameButton = (props) => {
         console.log(title + " has been pressed!!!");
     }
 
-    return ( 
+    console.log("url:: " + getUrl());
 
-        <button  onClick={() => handleClick(title)} className={"card"} style={{backgroundImage: `url(${getUrl()})`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center",   backgroundOrigin: "content-box", padding: "1.5em", paddingBottom: "2.5em" }}>
-            <Link style={{textDecoration: 'none'}} to={getLinkAddy(title)} className={"text"}> {title} </Link>
+    return ( 
+        <button  onClick={() => handleClick(title)} className={"card"} style={{backgroundImage: `url(` + getUrl() + `)`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundOrigin: "content-box", padding: "1.5em", paddingBottom: "2.5em", height: '30vh'}}>
+            <Link style={{textDecoration: 'none', color: 'rgb(70,70,70)'}} to={getLinkAddy(title)} className={"text"}> {title} </Link>
         </button>
-       
-        
-        
     );
 }
 
