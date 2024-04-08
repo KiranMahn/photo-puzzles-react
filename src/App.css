@@ -37,25 +37,30 @@
   }
 }
 
-.card {
+.mycard {
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   position:relative;
   align-items:center;
   margin:1em;
-  padding: 0.5em;
+  padding: 1.5em;
   border: 1px solid lightgray; 
   border-radius: 2em;
-  width: 25vh;
-  height: 25vh;
-  justify-content: space-around
+  width: 32vh;
+  height: 35vh;
+  justify-content: flex-end
+}
+
+.gameButton :hover {
+  background-color: rgb(216, 216, 216);
 }
 
 .text {
+  color:#282c34;
   font-family: Arvo-Bold;
   margin-top: 0.5em;
   position: absolute;
-  bottom: 0px;
   margin-bottom: 0.5em;
 }
 
@@ -64,6 +69,10 @@
   height: 100%; 
   object-fit: contain;
   padding:1em;
+}
+
+.img {
+  border: 0;
 }
 
 .homePage {

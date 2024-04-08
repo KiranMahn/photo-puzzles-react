@@ -18,9 +18,15 @@ export default function Home({navigation, route}) {
                             flexDirection: 'row',
                             width: '90vw'
                             }}>
-                    <GameButton title="Picture Trivia" navigation={navigation}></GameButton>
-                    <GameButton title="Story Creation" navigation={navigation}></GameButton>
-                    <GameButton title="Memory Game" navigation={navigation}></GameButton>
+                    <div className={"gameButton"}>
+                        <GameButton title="Picture Trivia" navigation={navigation}></GameButton>
+                    </div>
+                    <div className={"gameButton"}>
+                        <GameButton title="Story Creation" navigation={navigation}></GameButton>
+                    </div>
+                    <div className={"gameButton"}>
+                        <GameButton title="Memory Game" navigation={navigation}></GameButton>
+                    </div>
                 </div>
 
             </div>
