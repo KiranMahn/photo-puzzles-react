@@ -31,24 +31,6 @@ const Quiz = (props) => {
     correctAnswers: 0,
     wrongAnswers: 0,
   })
-
-  // const resetMe = () => {
-  //   setResult({
-  //     score: 0,
-  //     correctAnswers: 0,
-  //     wrongAnswers: 0,
-  //   });
-  //   setReset(false);
-  // }
-
-  // if(reset) {
-  //   console.log("resetting...")
-  //   resetMe();
-    
-  // }
-
-  // const { questions } = quiz
-  // const { question, choices, correctAnswer } = questions[activeQuestion]
   const onClickNext = () => {
     console.log("pressed")
     setSelectedAnswerIndex(null)
@@ -114,7 +96,7 @@ const Quiz = (props) => {
           </ul>
           <div className="flex-right">
             <button onClick={onClickNext} disabled={selectedAnswerIndex === null}>
-              {activeQuestion === imgOrder.length - 1 ? 'Finish' : 'Next'}
+              {idIndex === imgOrder.length - 1 ? 'Finish' : 'Next'}
             </button>
           </div>
         </div>
