@@ -118,16 +118,13 @@ const Quiz = (props) => {
         <div className="result">
           <h3>Result</h3>
           <p>
-            Total Question: <span>{imgOrder.length}</span>
-          </p>
-          <p>
             Total Score:<span> {result.score}</span>
           </p>
           <p>
-            Correct Answers:<span> {result.correctAnswers}</span>
+            Correct Answers:<span> {result.correctAnswers} / {imgOrder.length}</span>
           </p>
           <p>
-            Wrong Answers:<span> {result.wrongAnswers}</span>
+            Wrong Answers:<span> {result.wrongAnswers} / {imgOrder.length}</span>
           </p>
         </div>
       )}
