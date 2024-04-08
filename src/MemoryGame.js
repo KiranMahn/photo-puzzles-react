@@ -1,24 +1,46 @@
 import {Link} from 'react-router-dom';
 import { View, Image, Pressable, Text } from 'react-native-web';
+import ReactFlipCard from 'reactjs-flip-card'
+import { shuffle } from './PictureTrivia';
+import myData from './PhotoDetails.json';
 
-
+const populateOrder = () => {
+    let imageOrder = []
+    for(let i = 0; i < 9; i++) {
+        imageOrder.push(i);
+        imageOrder.push(i);
+    }
+    shuffle(imageOrder);
+    shuffle(imageOrder);
+    return imageOrder;
+}
 
 const makeCards = () => {
     let allCards = [];
-    for(let i = 0; i < 21; i++) {
+    let imageOrder = populateOrder();
+    console.log("imageOrder: " + imageOrder)
+    for(let i = 0; i < imageOrder.length; i++) {
+        let src = myData["images"][imageOrder[i]]["src"];
         allCards.push(
-            <button key={i} style={{backgroundImage: 'url(/scotland.png)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', width: '10vw', height: '20vh', backgroundColor: 'green', margin: '1em', padding: '1em', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            </button>
+            <ReactFlipCard
+                frontStyle={{display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20, backgroundColor: 'aliceblue'}}
+                backStyle={{display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20, backgroundColor: 'aliceblue'}}
+                backComponent={<img width={100} src={src} height={100} alt={""} style={{borderRadius: '20px'}}/>}
+                frontComponent={<div>front</div>}
+                flipTrigger='onClick'
+                key={i}
+            />
         );
     }
     
     return allCards;
 }
 
+
 const makeGame = () => {
     let cards = makeCards();
     return (
-        <View style={{width: '90vw', height: '80vh', alignSelf: 'center', display: 'flex', flexDirection: 'column', flexWrap: 'wrap'}}>
+        <View style={{width: '90vw', height: '80vh', alignSelf: 'center', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'space-between', alignSelf: 'center', alignItems: 'center'}}>
             {cards}
         </View>
     );

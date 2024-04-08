@@ -46,7 +46,7 @@ console.log("imageLocation: " + imgLocation);
 imageSrc = myData["images"][id]["src"];
 console.log("imageSrc: " + imageSrc);
 
-export default function PictureTrivia(props)  {
+const PictureTrivia = (props) => {
     console.log(myData);
     const [blur, setBlur] = useState(0.5);
     const [currId, setCurrId] = useState(id);
@@ -358,3 +358,5 @@ export default function PictureTrivia(props)  {
     );
   }
 
+export default PictureTrivia;
+export {shuffle};
