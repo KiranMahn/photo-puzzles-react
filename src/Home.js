@@ -16,7 +16,8 @@ export default function Home({navigation, route}) {
                 <div style={{display: 'flex',
                             justifyContent: 'space-around',
                             flexDirection: 'row',
-                            width: '100vw'}}>
+                            width: '90vw'
+                            }}>
                     <GameButton title="Picture Trivia" navigation={navigation}></GameButton>
                     <GameButton title="Story Creation" navigation={navigation}></GameButton>
                     <GameButton title="Memory Game" navigation={navigation}></GameButton>

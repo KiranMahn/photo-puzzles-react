@@ -7,3 +7,7 @@ Non urgent fixes:
     - hard reset mini games when user goes to home page (if user plays minigame, goes to homepage, plays another game, and returns to first game then gamestate is not properly reset and error occurs)
     - play again button for picture trivia 
     
+
+Story creation TODO: 
+    - add prompts
+    - make final story viewable before play again 
