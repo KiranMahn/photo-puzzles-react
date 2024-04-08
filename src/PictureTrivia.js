@@ -346,7 +346,7 @@ const PictureTrivia = (props) => {
 
                 
             </View>
-            <View style={{position: 'absolute', bottom: 0, right: 0, display: 'flex', width: '100%', alignItems: 'flex-end'}}>
+            <View style={{position: 'absolute', bottom: 0, right: 0, display: 'flex', alignItems: 'flex-end'}}>
                 <Pressable style={{margin: '2em'}} onPress={() => {setShowInfoPanel(true); setBlur(0.5)}}>
                     <Text style={{fontSize: 'x-large', margin: '1em', fontWeight: 'bold'}}>?</Text>
                 </Pressable>
