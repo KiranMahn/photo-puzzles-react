@@ -3,6 +3,11 @@ import { View, Image, Pressable, Text } from 'react-native-web';
 import ReactFlipCard from 'reactjs-flip-card'
 import { shuffle } from './PictureTrivia';
 import myData from './PhotoDetails.json';
+import { useState } from 'react';
+
+let firstCard = "";
+let secondCard = "";
+
 
 const populateOrder = () => {
     let imageOrder = []
@@ -15,13 +20,50 @@ const populateOrder = () => {
     return imageOrder;
 }
 
-const makeCards = () => {
-    let allCards = [];
-    let imageOrder = populateOrder();
-    console.log("imageOrder: " + imageOrder)
+let imageOrder = populateOrder();
+console.log("imageOrder: " + imageOrder);
+
+const MemoryGame = () => {
+    const [found, setFound] = useState();
+    let cards = [];
+    
+
+
+    const setActiveCard = (key) => {
+        // set appropriate card
+        if(firstCard.length == 0) {
+            firstCard = key;
+        } else {
+            secondCard = key;
+        }
+    
+        console.log("firstCard: ." + firstCard + ".");
+        console.log("secondCard: ." + secondCard + ".");
+        //if second card is being set, check for match 
+        if(secondCard.length !== 0) {
+            console.log("comparing...")
+            if(parseInt(firstCard) === parseInt(secondCard)) {
+                console.log("you get a point!!");
+                firstCard = "";
+                secondCard = "";
+                // temp.push(firstCard);
+            } else {
+                //flip back cards
+                console.log("wrong")
+                setTimeout(() => {
+                    setFound(false);
+                }, "500");
+                firstCard = "";
+                secondCard = "";
+            }
+            setFound(undefined);
+        }
+    
+    }
+
     for(let i = 0; i < imageOrder.length; i++) {
         let src = myData["images"][imageOrder[i]]["src"];
-        allCards.push(
+        cards.push(
             <ReactFlipCard
                 frontStyle={{display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20, backgroundColor: 'aliceblue'}}
                 backStyle={{display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20, backgroundColor: 'aliceblue'}}
@@ -29,25 +71,11 @@ const makeCards = () => {
                 frontComponent={<div>front</div>}
                 flipTrigger='onClick'
                 key={i}
+                onClick={() => setActiveCard([imageOrder[i]])}
+                flipByProp={found}
             />
         );
     }
-    
-    return allCards;
-}
-
-
-const makeGame = () => {
-    let cards = makeCards();
-    return (
-        <View style={{width: '90vw', height: '80vh', alignSelf: 'center', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'space-between', alignSelf: 'center', alignItems: 'center'}}>
-            {cards}
-        </View>
-    );
-}
-
-const MemoryGame = () => {
-    let game = makeGame();
     return (
         <View style={{height: '100vh', display: 'flex'}}>
             <View style={{height: '100vh', display: 'flex', flexDirection: 'column'}}>
@@ -62,7 +90,9 @@ const MemoryGame = () => {
                         <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em'}}>Login</Text>
                     </Pressable>
                 </View>
-                {game}
+                <View style={{width: '90vw', height: '80vh', alignSelf: 'center', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'space-between', alignSelf: 'center', alignItems: 'center'}}>
+                    {cards}
+                </View>
             </View>
         </View>
     )
