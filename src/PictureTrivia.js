@@ -319,7 +319,7 @@ const PictureTrivia = (props) => {
     // setSrc(myData["images"][currId]["src"]);
     console.log("src: " + src);
     return (
-        <View style={{height: '100vh', display: 'flex'}} onload={() => resetGame}>
+        <View style={{height: '100vh', width: '100vw', display: 'flex'}} onload={() => resetGame}>
             <PopUp/>
             <ResultWindow/>
             <View style={{height: '100vh', opacity:blur}}>
@@ -344,13 +344,13 @@ const PictureTrivia = (props) => {
                     </View>
                 </View>
 
-                <View style={{position: 'absolute', bottom: 0, display: 'flex', width: '100%', alignItems: 'flex-end', height: '5%'}}>
-                    <Pressable style={{margin: '2em'}} onPress={() => {setShowInfoPanel(true); setBlur(0.5)}}>
-                        <Text style={{fontSize: 'x-large', margin: '1em', fontWeight: 'bold'}}>?</Text>
-                    </Pressable>
-                </View>
+                
             </View>
-            
+            <View style={{position: 'absolute', bottom: 0, right: 0, display: 'flex', width: '100%', alignItems: 'flex-end'}}>
+                <Pressable style={{margin: '2em'}} onPress={() => {setShowInfoPanel(true); setBlur(0.5)}}>
+                    <Text style={{fontSize: 'x-large', margin: '1em', fontWeight: 'bold'}}>?</Text>
+                </Pressable>
+            </View>
             
         </View>
         
