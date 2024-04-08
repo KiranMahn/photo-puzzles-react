@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { quiz } from './data/questions'
 import './quiz.css'
 import myData from './PhotoDetails.json';
+import swal from 'sweetalert';
 let idIndex = 0;
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
 
@@ -43,7 +44,20 @@ const Quiz = (props) => {
           }
         : { ...prev, wrongAnswers: prev.wrongAnswers + 1 }
     )
-  
+    
+    if(selectedAnswer) {
+      swal({
+        title: "Correct",
+        icon: "success",
+      });
+    } else {
+      swal({
+        title: "Wrong",
+        icon: "warning",
+        dangerMode: true,
+      });
+    }
+
     if (idIndex !== numImages - 1) {
       console.log("switching...");
       idIndex++;

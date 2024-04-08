@@ -140,7 +140,7 @@ const PictureTrivia = (props) => {
                                     fontSize: 'x-large'
                                 }}>You Win!</Text>
                             <Text>
-                                Do you want to play again?
+                                Do you wish to view your results?
                             </Text>
                             <Pressable onPress={() => {resetGame();}} 
                                 style={{
@@ -154,7 +154,7 @@ const PictureTrivia = (props) => {
                                 <Text style={{
                                     fontFamily: 'Arvo-Bold, serif',
                                     fontWeight: 'bold'
-                                }}>Play Again</Text>
+                                }}>View Results</Text>
                             </Pressable>
                         </View> 
                     </View>
@@ -293,7 +293,7 @@ const PictureTrivia = (props) => {
                                       letterSpacing: 1,
                                       
                                 }}>
-                            Answer the trivia questions related to the photos on the left. You only get one attempt at each question. Each question is worth 5 points. Get {((numImages/2) + 2)}/{numImages} correct to win!
+                            Answer the trivia questions related to the photos on the left. You only get one attempt at each question. Each question is worth 5 points. Get {((parseInt(numImages/2)) + 2)}/{numImages} correct to win!
                         </Text>
                         <Pressable onPress={() => {console.log("clicked");setShowInfoPanel(false);setBlur(1);}} 
                             style={{
