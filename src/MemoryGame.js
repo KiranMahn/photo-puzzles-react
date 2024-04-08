@@ -1,10 +1,35 @@
 import {Link} from 'react-router-dom';
 import { View, Image, Pressable, Text } from 'react-native-web';
+
+
+
+const makeCards = () => {
+    let allCards = [];
+    for(let i = 0; i < 21; i++) {
+        allCards.push(
+            <button key={i} style={{backgroundImage: 'url(/scotland.png)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', width: '10vw', height: '20vh', backgroundColor: 'green', margin: '1em', padding: '1em', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            </button>
+        );
+    }
+    
+    return allCards;
+}
+
+const makeGame = () => {
+    let cards = makeCards();
+    return (
+        <View style={{width: '90vw', height: '80vh', alignSelf: 'center', display: 'flex', flexDirection: 'column', flexWrap: 'wrap'}}>
+            {cards}
+        </View>
+    );
+}
+
 const MemoryGame = () => {
+    let game = makeGame();
     return (
         <View style={{height: '100vh', display: 'flex'}}>
             <View style={{height: '100vh', display: 'flex', flexDirection: 'column'}}>
-                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100vw'}}>
+                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100vw', marginBottom: '1em'}}>
                     <View style={{margin: '1em', width: '10%'}}>
                         <Link to="/" style={{textDecoration: 'none'}}>
                             <Text style={{fontSize: '36px', fontWeight: 'bold'}}>&larr;</Text>
@@ -15,6 +40,7 @@ const MemoryGame = () => {
                         <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em'}}>Login</Text>
                     </Pressable>
                 </View>
+                {game}
             </View>
         </View>
     )
