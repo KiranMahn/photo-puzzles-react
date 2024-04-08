@@ -125,6 +125,8 @@ function GuessMap(props) {
     } else {
       if(props.atmp < 2) {
         props.resSetter("Try");
+        props.setReady(true);
+
       }
       else {
         props.resSetter("Lost");

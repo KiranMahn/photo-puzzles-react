@@ -106,7 +106,8 @@ export default function GuessSpot(props)  {
                     confettiRadius: 6,
                     confettiNumber: 500,
                   })
-                return (
+                if(attmp == 1) {
+                    return(
                     <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
                         <View style={{
                             width: '50vw',
@@ -121,9 +122,9 @@ export default function GuessSpot(props)  {
                                     fontFamily: 'Arvo-Bold, serif',
                                     fontWeight: 'bold',
                                     fontSize: 'x-large'
-                                }}>You Win!</Text>
+                                }}>Correct!</Text>
                             <Text>
-                                It took you {attmp} attemps! Do you want to play again?
+                                It took you {attmp} attempt! Try another round!
                             </Text>
                             <Pressable onPress={() => {resetGame();}} 
                                 style={{
@@ -140,8 +141,45 @@ export default function GuessSpot(props)  {
                                 }}>Play Again</Text>
                             </Pressable>
                         </View> 
-                    </View>
-                );
+                    </View>)
+                } else {
+                    return (
+                        <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
+                            <View style={{
+                                width: '50vw',
+                                height: '30vh', 
+                                backgroundColor: 'oldlace', 
+                                justifyContent: 'space-evenly', 
+                                alignItems: 'center',
+                                borderRadius: 25,
+                                border: '3px solid moccasin'
+                                }}>
+                                <Text style={{
+                                        fontFamily: 'Arvo-Bold, serif',
+                                        fontWeight: 'bold',
+                                        fontSize: 'x-large'
+                                    }}>Correct!</Text>
+                                <Text>
+                                    It took you {attmp} attempts! Try another round!
+                                </Text>
+                                <Pressable onPress={() => {resetGame();}} 
+                                    style={{
+                                        width: '20%',
+                                        height: '15%',
+                                        backgroundColor: 'moccasin',
+                                        borderRadius: '15px',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                    }}>
+                                    <Text style={{
+                                        fontFamily: 'Arvo-Bold, serif',
+                                        fontWeight: 'bold'
+                                    }}>Play Again</Text>
+                                </Pressable>
+                            </View> 
+                        </View>
+                    );
+                }
             }
             if(result == "Try"){
                 return (
@@ -163,7 +201,7 @@ export default function GuessSpot(props)  {
                             <Text>
                                 Your guess was {distance} miles away!
                             </Text>
-                            <Pressable onPress={() => {resetGame();}} 
+                            <Pressable onPress={() => {setReady(false); setBlur(1)}} 
                                 style={{
                                     width: '20%',
                                     height: '15%',
