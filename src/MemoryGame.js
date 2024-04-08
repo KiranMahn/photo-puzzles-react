@@ -68,7 +68,7 @@ const MemoryGame = () => {
                 frontStyle={{display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20, backgroundColor: 'aliceblue'}}
                 backStyle={{display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 20, backgroundColor: 'aliceblue'}}
                 backComponent={<img width={100} src={src} height={100} alt={""} style={{borderRadius: '20px'}}/>}
-                frontComponent={<div>front</div>}
+                frontComponent={<img width={100} src={'/card.png'} height={100} alt={""} style={{borderRadius: '20px'}}/>}
                 flipTrigger='onClick'
                 key={i}
                 onClick={() => setActiveCard([imageOrder[i]])}
