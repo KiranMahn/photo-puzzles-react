@@ -10,7 +10,7 @@ const resetGame = () => {
 }
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
 let idIndex = 0;
-let numImages = 9;
+let numImages = parseInt(myData["images"].length);
 
 const StoryMode = () => {
     const [chosenImagesIds, setchosenImagesIds] = useState([]);
@@ -68,12 +68,12 @@ const StoryMode = () => {
             <Image source={myData["images"][id]["src"]} style={{width: 150, height: 100, margin: '2em'}} key={id}/>
         );
         setChosenImages(temp)
-        if((idIndex + 3) < 9) {
+        if((idIndex + 3) < numImages) {
             setIdIndex(idIndex + 2);
-            console.log("idIndex under 9, currently: " + idIndex)
+            console.log("idIndex under " + numImages + ", currently: " + idIndex)
         }
         else {
-            console.log("idIndex above 9, currently: " + idIndex)
+            console.log("idIndex above " + numImages + ", currently: " + idIndex)
             setShowStory(true);
             // setShowInfoPanel(true)
             setIdIndex(0)

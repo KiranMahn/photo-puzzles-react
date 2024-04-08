@@ -6,12 +6,12 @@ import GuessSpot from './GuessSpot';
 import PictureTrivia from './PictureTrivia';
 import StoryMode from './StoryMode';
 import MemoryGame from './MemoryGame';
+import photoDetails from './PhotoDetails.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
   const title = 'Welcome to my photo site!';
-
   return (
     <BrowserRouter>
       <div className="App">

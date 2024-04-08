@@ -17,7 +17,7 @@ const Quiz = (props) => {
   imgLocation = myData["images"][currentId]["location"];
   let trivia = myData["images"][currentId]["trivia"];
   const { question, choices, correctAnswer } = trivia;
-  let numImages = 9;
+  let numImages = parseInt(myData["images"].length);
 
   console.log("Trivia: " + JSON.stringify(trivia));
 
@@ -91,7 +91,7 @@ const Quiz = (props) => {
     }
   }
 
-  const addLeadingZero = (number) => (number > 9 ? number : `0${number}`)
+  const addLeadingZero = (number) => (number > {numImages} ? number : `0${number}`)
 
   return (
     <div className="quiz-container">

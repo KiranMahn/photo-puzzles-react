@@ -9668,6 +9668,11 @@ react@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
 
+reactjs-flip-card@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/reactjs-flip-card/-/reactjs-flip-card-2.0.3.tgz#c449e4f05a1c54803e4b23deb1b188177a9c44e1"
+  integrity sha512-kVdt7O1EnfKhVTEZaeLigN/KnX/XPtOYmheBHw7c0kdNUg/p+ltmztmmSXVv55vRttZKP9KqzyFn/ILlg9DbEw==
+
 read-cache@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/read-cache/-/read-cache-1.0.0.tgz"
