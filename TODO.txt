@@ -11,3 +11,6 @@ Non urgent fixes:
 Story creation TODO: 
     - add prompts
     - make final story viewable before play again 
+
+credits: 
+ - <a href="https://www.flaticon.com/free-icons/error" title="error icons">Error icons created by Puckung - Flaticon</a>

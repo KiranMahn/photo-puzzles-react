@@ -12,6 +12,11 @@
   }
 }
 
+@font-face {
+  font-family: 'Arvo-Bold';
+  src: url(/public/Arvo/Arvo-Bold.ttf) format('truetype');
+}
+
 .App {
   text-align: center;
 }
@@ -63,14 +68,13 @@
   border-radius: 2em;
   width: 32vh;
   height: 35vh;
-  justify-content: flex-end
+  justify-content: flex-end;
 }
 
 .gameButton :hover {
   background-color: rgb(243, 243, 243);
   border-bottom: 3px solid lightgray; 
   border-right: 3px solid lightgray; 
-
 }
 
 .text {
@@ -80,6 +84,8 @@
   position: absolute;
   margin-bottom: 0.5em;
 }
+
+
 
 .image {
   width: 100%;
@@ -97,6 +103,7 @@
   flex-direction: column;
   height: 100vh;
   justify-content: space-between;
+  align-items: center;
   
 }
 
@@ -126,7 +133,9 @@
     display: flex;
       justify-content: center;
       align-items: center;
-      width: 90vw
+      width: 90vw;
+      align-self: center;
+
   }
 
 

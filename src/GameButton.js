@@ -92,7 +92,7 @@ const GameButton = (props) => {
 
     return ( 
             <Link className={"mycard"} to={getLinkAddy(title)}> 
-                <image  onClick={() => handleClick(title)} style={{backgroundImage: `url(` + getUrl() + `)`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundOrigin: "content-box", height: '20vh', width: '15vw', marginBottom: '3em', border: 0, overflow: 'hidden'}}></image>
+                <image  onClick={() => handleClick(title)} style={{backgroundImage: `url(` + getUrl() + `)`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundOrigin: "content-box", height: '20vh', width: '10vw', marginBottom: '3em', border: 0, overflow: 'hidden'}}></image>
                 <p className={"text"}>{title}</p> 
             </Link>
     );
