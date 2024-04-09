@@ -12,6 +12,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   const title = 'Welcome to my photo site!';
+  document.title = "Photo Puzzles";
+
   return (
     <BrowserRouter>
       <div className="App">
