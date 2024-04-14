@@ -6,6 +6,9 @@ import GuessMap from './GuessMap';
 import myData from './PhotoDetails.json';
 import JSConfetti from 'js-confetti';
 import Quiz from './Quiz';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 let id = 0;
 let idIndex = 0;
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
@@ -338,7 +341,7 @@ const PictureTrivia = (props) => {
 
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', width: '100%'}}>
                     <View>
-                        <Image source={myData["images"][currId]["src"]} style={{width: '40vw', height: '30vw', margin: '2em'}}/>
+                        <LazyLoadImage effect="blur" src={myData["images"][currId]["src"]} style={{width: '40vw', height: '30vw', margin: '2em'}}/>
                     </View>
 
                     <View style={{margin: 2, alignSelf: 'end'}}>
