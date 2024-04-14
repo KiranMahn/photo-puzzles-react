@@ -6,5 +6,6 @@ Non urgent fixes:
     - play again button for picture trivia 
     - handle routing on server side 
     - update page not found css
+    - update loader in GuessMap
 credits: 
  - <a href="https://www.flaticon.com/free-icons/error" title="error icons">Error icons created by Puckung - Flaticon</a>
