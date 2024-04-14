@@ -6,97 +6,61 @@ import { redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Pressable } from 'react-native';
 import { View, Image } from 'react-native-web';
-const GameButton = (props) => {
-    const { title, navigation } = props;
-    const [linkAddy, setLink] = useState("./guessspot");
-    console.log("title: " + title);
 
+/* GameButtons is used to create the cards with links in the homepage that lead to the mini games */
+
+const GameButton = (props) => {
+    // get the title of the button. The title is set as a prop in Home.js
+    const { title } = props;
+
+    /* gets the imageUrl based on the button title. This will need to be updated every time 
+    a new GameButton is added. If there is no image stored that correlates to that title a "not found" image should be displayed */
     const getUrl = () => {
-        let beginning = "/";
-        let url = ""
 
         switch(title) {
             case "Guess the spot":
-                url = beginning + "Globe.png";
-                console.log("url: " + url);
-                return url;
+                return "/Globe.png";
+
             case "Picture Trivia":
-                url = beginning + "Medal.png";
-                console.log("url: " + url);
-                return url;
+                return "/Medal.png";
+
             case "Story Creation":
-                url = beginning + "Book.png";
-                console.log("url: " + url);
-                return url;
+                return "/Book.png";
+
             case "Memory Game":
-                url = beginning + "Brain.png";
-                console.log("url: " + url);
-                return url;
+                return "/Brain.png";
+
             default: 
-                url = beginning + "notFound.png";
-                console.log("url: " + url);
-                return url;
+                return "/notFound.png";
         }
     }
 
-    const getLinkAddy = (title) => {
+    /* returns the link route to go to when this gameButton is pressed  */
+    const getLinkAddy = () => {
         switch(title) {
             case "Guess the spot":
-                console.log("going to guess spot");
                 return("./guessspot");
+
             case "Picture Trivia":
-                console.log("going to picture trivia");
                 return("./picturetrivia");
                 
             case "Story Creation":
-                console.log("going to storyMode");
                 return("./storymode");
                 
             case "Memory Game":
-                console.log("going to Memory game");
                 return("./memorygame");
         }
                 
     }
 
-    const handleClick = (title) => {
-        console.log("clicked: " + title);
-        switch(title) {
-            case "Guess the spot":
-                console.log("going to guess spot");
-                setLink("./guessspot");
-                //navigation.navigate('GuessSpot', {name: 'Jane'})
-                break;
-            case "Picture Trivia":
-                console.log("going to picture trivia");
-                setLink("./picturetrivia");
-                // navigation.navigate('PictureTrivia', {name: 'Jane'})
-                break;
-            case "Story Creation":
-                console.log("going to storyMode");
-                setLink("./storymode");
-                // navigation.navigate('StoryMode', {name: 'Jane'})
-                break;
-            case "Memory Game":
-                console.log("going to Memory game");
-                setLink("./memorygame");
-                // navigation.navigate('MemoryGame', {name: 'Jane'})
-                break;
-            
-        }
-        
-        console.log(title + " has been pressed!!!");
-    }
-
-    console.log("url:: " + getUrl());
-
+    /* returns the GameButton Element as a Link with a large icon and a title beneath the icon.
+    When the icon or title is pressed, it will navigate to that minigame. */
     return ( 
             <Link className={"mycard"} to={getLinkAddy(title)}> 
-                <image  onClick={() => handleClick(title)} style={{backgroundImage: `url(` + getUrl() + `)`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundOrigin: "content-box", height: '20vh', width: '10vw', marginBottom: '3em', border: 0, overflow: 'hidden'}}></image>
+                <image style={{backgroundImage: `url(` + getUrl() + `)`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundOrigin: "content-box", height: '20vh', width: '10vw', marginBottom: '3em', border: 0, overflow: 'hidden'}}></image>
                 <p className={"text"}>{title}</p> 
             </Link>
     );
 }
-
 
 export default GameButton;
