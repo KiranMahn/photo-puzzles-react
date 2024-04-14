@@ -8,17 +8,27 @@ import JSConfetti from 'js-confetti';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-let id = 0;
-let imgLocation = "[56.6577495263809, -4.635479507522097]";
-let imageSrc = './scotland.png';
-let numImages = parseInt(myData["images"].length);
-console.log("numImages: " + numImages)
-// choose random number
+/* Guess spot is a geoguesser */
 
+// id of current image
+let id = 0;
+
+// coordiantes of current image
+let imgLocation = "[56.6577495263809, -4.635479507522097]";
+
+// url of current image
+let imageSrc = './scotland.png';
+
+// number of images to be cycled through 
+let numImages = parseInt(myData["images"].length);
+
+// create a random order to display all the iamges 
 let imgOrder = []
 for(let i = 0; i < numImages; i++) {
     imgOrder.push(i)
 }
+
+// helper shuffle function 
 function shuffle(array) {
     let currentIndex = array.length;
   
@@ -34,44 +44,45 @@ function shuffle(array) {
         array[randomIndex], array[currentIndex]];
     }
 }
-
 shuffle(imgOrder);
+
+// set id to first image to be displayed 
 id = imgOrder[0];
-let imgIds = [id]
 
 // get image with that id
 
 imgLocation = myData["images"][id]["location"];
-console.log("imageLocation: " + imgLocation);
 
 imageSrc = myData["images"][id]["src"];
-console.log("imageSrc: " + imageSrc);
 let index = 0;
 export default function GuessSpot(props)  {
-    console.log(myData);
+    // states
     const [blur, setBlur] = useState(0.5);
-    // result is true for win or false for lost
     const [result, setResult] = useState("Pending");
-
-    // ready is true when user wins or has guess wrong 3 times in a row
     const [ready, setReady] = useState(false);
-    let imgHistory = []
-    // atmp is increased with each click
     const [attmp, setAttempt] = useState(0);
-
+    const [showInfoPanel, setShowInfoPanel] = useState(true);
     const [distance, setDistance] = useState(0);
-    const[score, setScore] = useState(0);
-    const[loc, setLoc] = useState(imgLocation);
-    const[src, setSrc] = useState(imageSrc);
+    const [score, setScore] = useState(0);
+    const [loc, setLoc] = useState(imgLocation);
+    const [src, setSrc] = useState(imageSrc);
+
+    // canvas is for displaying confetti
     const canvas = this;
     const jsConfetti = new JSConfetti({canvas});
 
+    // resets the game after each ROUND 
     const resetGame = () => {
+        // set game state as pending 
         setResult("Pending");
+
+        // do not show popup yet 
         setReady(false);
-        let nextId = Math.floor(Math.random() * numImages);
+
+        // increase index
         index++;
-        console.log("index: " + index);
+
+        // if gone through all images show winning screen with confetti 
         if(index == numImages) {
             setResult("over");
             setReady(true);
@@ -85,87 +96,72 @@ export default function GuessSpot(props)  {
                 confettiRadius: 6,
                 confettiNumber: 500,
               })
-
-            
+        // if there are still images to go then set the next round
         } else {
-            console.log("imgOrder: " + imgOrder)
-            id = imgOrder[index];;
-            imgIds.push(id);
-            console.log("newid:" + id);
+            // update id, coordinates, location, and url
+            id = imgOrder[index];
             imgLocation = myData["images"][id]["location"];
             setLoc(imgLocation);
             imageSrc = myData["images"][id]["src"];
             setSrc(imageSrc);
-            console.log("imageSrc: " + imageSrc);
-            console.log("clicked");
+
+            // deblur background and reset attempts 
             setBlur(1);
             setAttempt(0);
-
-        }
-        
-        
-    }
-    
-    
-
-    // set image url 
-    // set image location 
-
-    // get rnd id
-    
-    const [showInfoPanel, setShowInfoPanel] = useState(true);
-
-    const getResult = (result) => {
-        setBlur(0.5);
-        
+        }  
     }
 
+    // will make everything behind the result window semi-opaque 
     const blurBackground = () => {
         setBlur(0.5);
     }
 
     const ResultWindow = () => {
+        // if result window is ready to be shown
         if(ready) {
-            console.log("displaying result panel");
+            // if user has won that round
             if(result == "Win"){
-               
+                // if on first attempt 
                 if(attmp == 1) {
                     return(
-                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
-                        <View style={{
-                            width: '50vw',
-                            height: '30vh', 
-                            backgroundColor: 'oldlace', 
-                            justifyContent: 'space-evenly', 
-                            alignItems: 'center',
-                            borderRadius: 25,
-                            border: '3px solid moccasin'
-                            }}>
-                            <Text style={{
-                                    fontFamily: 'Arvo-Bold, serif',
-                                    fontWeight: 'bold',
-                                    fontSize: 'x-large'
-                                }}>Correct!</Text>
-                            <Text>
-                                It took you {attmp} attempt! Try another round!
-                            </Text>
-                            <Pressable onPress={() => {resetGame();}} 
-                                style={{
-                                    width: '20%',
-                                    height: '15%',
-                                    backgroundColor: 'moccasin',
-                                    borderRadius: '15px',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
+                        <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
+                            <View style={{
+                                width: '50vw',
+                                height: '30vh', 
+                                backgroundColor: 'oldlace', 
+                                justifyContent: 'space-evenly', 
+                                alignItems: 'center',
+                                borderRadius: 25,
+                                border: '3px solid moccasin'
                                 }}>
                                 <Text style={{
-                                    fontFamily: 'Arvo-Bold, serif',
-                                    fontWeight: 'bold'
-                                }}>Play Again</Text>
-                            </Pressable>
-                        </View> 
-                    </View>)
-                } else {
+                                        fontFamily: 'Arvo-Bold, serif',
+                                        fontWeight: 'bold',
+                                        fontSize: 'x-large'
+                                    }}>Correct!</Text>
+                                <Text>
+                                    It took you {attmp} attempt! Try another round!
+                                </Text>
+                                <Pressable onPress={() => {resetGame();}} 
+                                    style={{
+                                        width: '20%',
+                                        height: '15%',
+                                        backgroundColor: 'moccasin',
+                                        borderRadius: '15px',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                    }}>
+                                    <Text style={{
+                                        fontFamily: 'Arvo-Bold, serif',
+                                        fontWeight: 'bold'
+                                    }}>Play Again</Text>
+                                </Pressable>
+                            </View> 
+                        </View>
+                    )
+                } 
+                // if on 2nd or 3rd attempt 
+                else {
                     return (
                         <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
                             <View style={{
@@ -204,6 +200,8 @@ export default function GuessSpot(props)  {
                     );
                 }
             }
+
+            // if user has more attempts 
             if(result == "Try"){
                 return (
                     <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
@@ -243,6 +241,8 @@ export default function GuessSpot(props)  {
                 );
 
             }
+
+            // if user has lost that round
             if(result == "Lost"){
                 return (
                     <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
@@ -281,6 +281,8 @@ export default function GuessSpot(props)  {
                     </View>
                 );
             }
+
+            // if the game is over
             if(result == "over"){
                 return (
                     <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
@@ -307,12 +309,15 @@ export default function GuessSpot(props)  {
                 );
             }
             
-        }else {
+        }
+        // if result window is not ready to be returned then return nothing
+        else {
             return;
         }
     }
 
     const PopUp = () => {
+        // if information panel is ready to be shown then return the popup
         if(showInfoPanel) {
             return (
                 <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
@@ -339,7 +344,7 @@ export default function GuessSpot(props)  {
                                 }}>
                             Guess where the picture was taken by selecting a point on the map. You get 3 attempts. Your guess must be within 500 miles of the photo.
                         </Text>
-                        <Pressable onPress={() => {console.log("clicked");setShowInfoPanel(false);setBlur(1);}} 
+                        <Pressable onPress={() => {setShowInfoPanel(false);setBlur(1);}} 
                             style={{
                                 width: '20%',
                                 height: '15%',
@@ -356,16 +361,18 @@ export default function GuessSpot(props)  {
                     </View> 
                 </View>
             );
-        } else {
+        } 
+        // if information panel should not be shown then return nothing
+        else {
             return;
         }
     }
 
-    console.log("src: " + src);
+    // return the main component 
     return (
         <View style={{height: '100vh', width: '100vw'}} onload={() => resetGame}>
-            <PopUp/>
-            <ResultWindow/>
+            {<PopUp/>}
+            {<ResultWindow/>}
             <View style={{height: '100vh', opacity:blur}}>
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                     <View style={{margin: '1em', width: '10%'}}>
@@ -383,7 +390,7 @@ export default function GuessSpot(props)  {
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly'}}>
                     <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em'}}>Score: {score}</Text>
                     <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em', borderBlockColor: 'lightgray'}}> Attempts: {attmp} </Text>
-                    <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em', borderBlockColor: 'lightgray'}}> Round: {imgIds.length} / {numImages}</Text>
+                    <Text style={{textAlign: 'center', fontSize: 'large', fontFamily: 'Arvo-Bold, serif', padding: '0.5em', borderBlockColor: 'lightgray'}}> Round: {index + 1} / {numImages}</Text>
 
                 </View>
 
@@ -406,8 +413,6 @@ export default function GuessSpot(props)  {
                 </Pressable>
             </View>
         </View>
-        
-
     );
   }
 
