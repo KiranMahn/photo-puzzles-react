@@ -83,7 +83,6 @@ function GuessMap(props) {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
     const d = R * c; // in metres
-    console.log("d: " + d);
 
     return d;
   }
@@ -165,8 +164,6 @@ function GuessMap(props) {
         onLoad={onLoad}
         onUnmount={onUnmount}
         onClick={ev => {
-            console.log("latitide = ", ev.latLng.lat());
-            console.log("longitude = ", ev.latLng.lng());
             onMarkerClick(this, {markerId: 80,lat: ev.latLng.lat(),lng: ev.latLng.lng()});
         }}
         mapId={8008}
