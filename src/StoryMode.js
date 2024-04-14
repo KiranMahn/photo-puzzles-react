@@ -4,6 +4,8 @@ import myData from './PhotoDetails.json';
 import { useState } from 'react';
 import JSConfetti from 'js-confetti';
 import ShowStory from './ShowStory';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const resetGame = () => {
     return 0;
@@ -65,7 +67,7 @@ const StoryMode = () => {
         console.log("chosenImagesIds: " + chosenImagesIds)
         let temp = chosenImages;
         temp.push(
-            <Image source={myData["images"][id]["src"]} style={{width: 150, height: 100, margin: '2em'}} key={id}/>
+            <LazyLoadImage effect='blur' src={myData["images"][id]["src"]} style={{width: 150, height: 100, margin: '2em'}} key={id}/>
         );
         setChosenImages(temp)
         if((idIndex + 3) < numImages) {
@@ -157,10 +159,10 @@ const StoryMode = () => {
 
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', width: '100%'}}>
                     <Pressable style={{margin: '2em'}} onPress={() => {addImage(imgOrder[idIndex]); }}>
-                        <Image source={myData["images"][imgOrder[idIndex]]["src"]} style={{width: '35vw', height: '20vw'}}/>
+                        <LazyLoadImage effect='blur' src={myData["images"][imgOrder[idIndex]]["src"]} style={{width: '35vw', height: '20vw'}}/>
                     </Pressable>
                     <Pressable style={{margin: '2em'}} onPress={() => {addImage(imgOrder[idIndex + 1]); }}>
-                        <Image source={myData["images"][imgOrder[idIndex + 1]]["src"]} style={{width: '35vw', height: '20vw'}}/>
+                        <LazyLoadImage effect='blur' src={myData["images"][imgOrder[idIndex + 1]]["src"]} style={{width: '35vw', height: '20vw'}}/>
                     </Pressable>
                 </View>
 
