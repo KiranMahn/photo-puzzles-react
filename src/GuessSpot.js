@@ -12,9 +12,31 @@ let id = 0;
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
 let imageSrc = './scotland.png';
 let numImages = parseInt(myData["images"].length);
+console.log("numImages: " + numImages)
 // choose random number
-id = Math.floor(Math.random() * numImages);
-console.log("id: " + id);
+
+let imgOrder = []
+for(let i = 0; i < numImages; i++) {
+    imgOrder.push(i)
+}
+function shuffle(array) {
+    let currentIndex = array.length;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+}
+
+shuffle(imgOrder);
+id = imgOrder[0];
 let imgIds = [id]
 
 // get image with that id
@@ -24,7 +46,7 @@ console.log("imageLocation: " + imgLocation);
 
 imageSrc = myData["images"][id]["src"];
 console.log("imageSrc: " + imageSrc);
-
+let index = 0;
 export default function GuessSpot(props)  {
     console.log(myData);
     const [blur, setBlur] = useState(0.5);
@@ -48,7 +70,9 @@ export default function GuessSpot(props)  {
         setResult("Pending");
         setReady(false);
         let nextId = Math.floor(Math.random() * numImages);
-        if(imgIds.length == numImages) {
+        index++;
+        console.log("index: " + index);
+        if(index == numImages) {
             setResult("over");
             setReady(true);
 
@@ -59,22 +83,23 @@ export default function GuessSpot(props)  {
                 confettiRadius: 6,
                 confettiNumber: 500,
               })
+        } else {
+            console.log("imgOrder: " + imgOrder)
+            id = imgOrder[index];;
+            imgIds.push(id);
+            console.log("newid:" + id);
+            imgLocation = myData["images"][id]["location"];
+            setLoc(imgLocation);
+            imageSrc = myData["images"][id]["src"];
+            setSrc(imageSrc);
+            console.log("imageSrc: " + imageSrc);
+            console.log("clicked");
+            setBlur(1);
+            setAttempt(0);
+
         }
-        while(nextId == id) {
-            nextId = Math.floor(Math.random() * numImages);
-        }
-        id = nextId;
-        imgIds.push(id);
-        console.log("newid:" + id);
-        imgLocation = myData["images"][id]["location"];
-        setLoc(imgLocation);
-        imageSrc = myData["images"][id]["src"];
-        setSrc(imageSrc);
-        console.log("imageSrc: " + imageSrc);
-        console.log("clicked");
         
-        setBlur(1);
-        setAttempt(0);
+        
     }
     
     
