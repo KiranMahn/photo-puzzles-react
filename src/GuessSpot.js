@@ -75,14 +75,18 @@ export default function GuessSpot(props)  {
         if(index == numImages) {
             setResult("over");
             setReady(true);
-
             jsConfetti.addConfetti({
+                emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
+             })
+             jsConfetti.addConfetti({
                 confettiRadius: 6,
               })
               jsConfetti.addConfetti({
                 confettiRadius: 6,
                 confettiNumber: 500,
               })
+
+            
         } else {
             console.log("imgOrder: " + imgOrder)
             id = imgOrder[index];;
@@ -124,16 +128,7 @@ export default function GuessSpot(props)  {
         if(ready) {
             console.log("displaying result panel");
             if(result == "Win"){
-                jsConfetti.addConfetti({
-                    emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
-                 })
-                 jsConfetti.addConfetti({
-                    confettiRadius: 6,
-                  })
-                  jsConfetti.addConfetti({
-                    confettiRadius: 6,
-                    confettiNumber: 500,
-                  })
+               
                 if(attmp == 1) {
                     return(
                     <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
