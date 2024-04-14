@@ -4,6 +4,7 @@ Non urgent fixes:
     - add play again button for Guess the spot 
     - hard reset mini games when user goes to home page (if user plays minigame, goes to homepage, plays another game, and returns to first game then gamestate is not properly reset and error occurs)
     - play again button for picture trivia 
-    
+    - handle routing on server side 
+    - update page not found css
 credits: 
  - <a href="https://www.flaticon.com/free-icons/error" title="error icons">Error icons created by Puckung - Flaticon</a>
