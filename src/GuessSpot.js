@@ -5,6 +5,9 @@ import { View , Text, Pressable, Image } from 'react-native';
 import GuessMap from './GuessMap';
 import myData from './PhotoDetails.json';
 import JSConfetti from 'js-confetti';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 let id = 0;
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
 let imageSrc = './scotland.png';
@@ -366,7 +369,7 @@ export default function GuessSpot(props)  {
 
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
                     <View>
-                        <Image source={src} style={{width: '40vw', height: '30vw', margin: '2em'}}/>
+                        <LazyLoadImage alt={"This site is not yet friendly to the blind"} effect="blur" src={src} style={{width: '40vw', height: '30vw', margin: '2em'}}/>
                     </View>
 
                     <View style={{margin: '4em', alignSelf: 'end'}}>
