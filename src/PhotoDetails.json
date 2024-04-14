@@ -23,7 +23,7 @@
             "id": "1",
             "trivia": {
                 "question": "Which two states is Lake Tahoe in?",
-                "choices": ["Yosemite % Arizona", "Oregan & Washington", "California & Nevada", "None of the above"],
+                "choices": ["Yosemite & Arizona", "Oregan & Washington", "California & Nevada", "None of the above"],
                 "type": "MCQs",
                 "correctAnswer":"California & Nevada"
             },
