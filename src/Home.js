@@ -10,7 +10,7 @@ export default function Home({navigation, route}) {
             <div className={"homePage"}>
                 <p className={"Header"}> {puzzlePiece} Photo Puzzles</p>
                 <div className={"gameButton"}>
-                    <GameButton title="Guess the spot" navigation={navigation}></GameButton>
+                    <GameButton title="Guess the spot"></GameButton>
                 </div>
 
                 <div style={{display: 'flex',
@@ -19,13 +19,13 @@ export default function Home({navigation, route}) {
                             width: '90vw'
                             }}>
                     <div className={"gameButton"}>
-                        <GameButton title="Picture Trivia" navigation={navigation}></GameButton>
+                        <GameButton title="Picture Trivia"></GameButton>
                     </div>
                     <div className={"gameButton"}>
-                        <GameButton title="Story Creation" navigation={navigation}></GameButton>
+                        <GameButton title="Story Creation"></GameButton>
                     </div>
                     <div className={"gameButton"}>
-                        <GameButton title="Memory Game" navigation={navigation}></GameButton>
+                        <GameButton title="Memory Game"></GameButton>
                     </div>
                 </div>
 

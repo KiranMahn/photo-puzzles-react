@@ -9,6 +9,8 @@ import MemoryGame from './MemoryGame';
 import photoDetails from './PhotoDetails.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+/* App.js is the first file to load and is the root of the web app */
+
 function App() {
 
   // set title to Photo Puzzles
