@@ -1,5 +1,6 @@
 
 Non urgent fixes: 
+
     - stop confetti animation delay 
     - add play again button for Guess the spot 
     - hard reset mini games when user goes to home page (if user plays minigame, goes to homepage, plays another game, and returns to first game then gamestate is not properly reset and error occurs)
@@ -7,7 +8,6 @@ Non urgent fixes:
     - handle routing on server side 
     - update page not found css
     - update loader in GuessMap
-    - util folder with methods lilke shuffle 
     - create state [loaded, set loaded] which is triggered on lazy image onload function. while loaded is false display loading message
     - go striaght to results instead of having to press try again in GuessSpot 
     - pressing same button twice 9 times shows confetti fix it 
