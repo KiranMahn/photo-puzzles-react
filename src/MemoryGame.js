@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import { View, Image, Pressable, Text } from 'react-native-web';
 import ReactFlipCard from 'reactjs-flip-card'
-import shuffle from './utils/shuffle';
+import generateMemoryGameIds from './utils/generator';
 import myData from './PhotoDetails.json';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -20,18 +20,7 @@ let correctInARow = 0;
 let numImages = parseInt(myData["images"].length);
 
 // create a list of shuffled image ids  
-const populateOrder = () => {
-    let imageOrder = []
-    for(let i = 0; i < numImages; i++) {
-        imageOrder.push(i);
-        imageOrder.push(i);
-    }
-    shuffle(imageOrder);
-    shuffle(imageOrder);
-    return imageOrder;
-}
-let imageOrder = populateOrder();
-
+let imageOrder = generateMemoryGameIds();
 
 // main component 
 const MemoryGame = () => {
