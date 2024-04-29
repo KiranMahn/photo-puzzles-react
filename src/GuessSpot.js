@@ -8,10 +8,12 @@ import JSConfetti from 'js-confetti';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import shuffle from './utils/shuffle';
+import generateShuffledIds from './utils/generator';
 /* Guess spot is a geoguesser */
 
-// id of current image
+// id and index of current image
 let id = 0;
+let index = 0;
 
 // coordiantes of current image
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
@@ -23,23 +25,15 @@ let imageSrc = './scotland.png';
 let numImages = parseInt(myData["images"].length);
 
 // create a random order to display all the iamges 
-let imgOrder = []
-for(let i = 0; i < numImages; i++) {
-    imgOrder.push(i)
-}
-
-
-shuffle(imgOrder);
+let imgOrder = generateShuffledIds(numImages);
 
 // set id to first image to be displayed 
 id = imgOrder[0];
 
 // get image with that id
-
 imgLocation = myData["images"][id]["location"];
-
 imageSrc = myData["images"][id]["src"];
-let index = 0;
+
 export default function GuessSpot(props)  {
     // states
     const [blur, setBlur] = useState(0.5);

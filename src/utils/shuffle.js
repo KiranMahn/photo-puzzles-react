@@ -1,4 +1,4 @@
-// shuffle helper function 
+// shuffle (void) will take in an array and return that array with its contents shuffled. 
 function shuffle(array) {
     let currentIndex = array.length;
   

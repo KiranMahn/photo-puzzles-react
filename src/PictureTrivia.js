@@ -9,6 +9,7 @@ import Quiz from './Quiz';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import shuffle from './utils/shuffle';
+import generateShuffledIds from './utils/generator';
 
 let imgIds;
 let imgOrder;
@@ -23,11 +24,7 @@ id = Math.floor(Math.random() * numImages);
 imgIds = [id]
 
 // create a random image order 
-imgOrder = [];
-for(let i = 0; i < numImages; i++) {
-    imgOrder.push(i)
-}
-shuffle(imgOrder);
+imgOrder = generateShuffledIds(numImages);
 
 // set current id to the first in the list of random images 
 id = imgOrder[0];
