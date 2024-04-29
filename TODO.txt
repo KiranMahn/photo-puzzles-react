@@ -10,8 +10,8 @@ Non urgent fixes:
     - update loader in GuessMap
     - create state [loaded, set loaded] which is triggered on lazy image onload function. while loaded is false display loading message
     - go striaght to results instead of having to press try again in GuessSpot 
-    - pressing same button twice 9 times shows confetti fix it 
     - confetti showed early on memory game 
-    
+        - pressing same button twice 9 times shows confetti fix it 
+
 credits: 
  - <a href="https://www.flaticon.com/free-icons/error" title="error icons">Error icons created by Puckung - Flaticon</a>
