@@ -7,7 +7,7 @@ import myData from './PhotoDetails.json';
 import JSConfetti from 'js-confetti';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-
+import shuffle from './utils/shuffle';
 /* Guess spot is a geoguesser */
 
 // id of current image
@@ -28,22 +28,7 @@ for(let i = 0; i < numImages; i++) {
     imgOrder.push(i)
 }
 
-// helper shuffle function 
-function shuffle(array) {
-    let currentIndex = array.length;
-  
-    // While there remain elements to shuffle...
-    while (currentIndex != 0) {
-  
-      // Pick a remaining element...
-      let randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
-    }
-}
+
 shuffle(imgOrder);
 
 // set id to first image to be displayed 

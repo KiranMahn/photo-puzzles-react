@@ -8,35 +8,25 @@ import JSConfetti from 'js-confetti';
 import Quiz from './Quiz';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import shuffle from './utils/shuffle';
 
+let imgIds;
+let imgOrder;
 let id = 0;
 let idIndex = 0;
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
 let imageSrc = './scotland.png';
 let numImages = parseInt(myData["images"].length);
+
 // choose random number
 id = Math.floor(Math.random() * numImages);
 console.log("id: " + id);
-let imgIds = [id]
+imgIds = [id]
 
-let imgOrder = []
+// create a random image order 
+imgOrder = [];
 for(let i = 0; i < numImages; i++) {
     imgOrder.push(i)
-}
-function shuffle(array) {
-    let currentIndex = array.length;
-  
-    // While there remain elements to shuffle...
-    while (currentIndex != 0) {
-  
-      // Pick a remaining element...
-      let randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
-    }
 }
 
 shuffle(imgOrder);
