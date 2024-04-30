@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import { View, Image, Pressable, Text } from 'react-native-web';
 import ReactFlipCard from 'reactjs-flip-card'
-import generateMemoryGameIds from './utils/generator';
+import {generateMemoryGameIds} from './utils/generator';
 import myData from './PhotoDetails.json';
 import { useState } from 'react';
 import { useEffect } from 'react';

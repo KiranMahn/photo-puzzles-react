@@ -1,4 +1,6 @@
-import myData from './PhotoDetails.json';
+import myData from '../PhotoDetails.json';
+import shuffle from './shuffle';
+import { Text, View, Pressable } from 'react-native';
 // this file contains methods that generate lists
 
 let numImages = parseInt(myData["images"].length);
@@ -26,5 +28,62 @@ function generateMemoryGameIds() {
     shuffle(imageOrder);
     return imageOrder;
 }
+
+// generate a popup with a title, body, and buttonTxt parameters and return the JSX custom popup element 
+function generatePopup(title, body, buttonTxt, onclickFunctions) {
+
+    const handleClick = () => {
+        for(const method in onclickFunctions) {
+            method();
+        }
+    }
+
+    return (
+        <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
+            <View style={{
+                width: '50vw',
+                height: '30vh', 
+                backgroundColor: 'oldlace', 
+                justifyContent: 'space-evenly', 
+                alignItems: 'center',
+                borderRadius: 25,
+                border: '3px solid moccasin'
+                }}>
+                <Text style={{
+                        fontFamily: 'Arvo-Bold, serif',
+                        fontWeight: 'bold',
+                        fontSize: 'x-large'
+                    }}>{title}</Text>
+                <Text style={{fontFamily: 'Arvo-Bold', 
+                            color: 'gray',
+                            width: '70%',
+                            textAlign: 'center',
+                            letterSpacing: 1,
+                            
+                        }}>
+                    You Win!
+                </Text>
+                <Pressable onPress={() => handleClick} 
+                    style={{
+                        width: '20%',
+                        height: '15%',
+                        backgroundColor: 'moccasin',
+                        borderRadius: '15px',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}>
+                    <Text style={{
+                        fontFamily: 'Arvo-Bold, serif',
+                        fontWeight: 'bold'
+                    }}>{buttonTxt}</Text>
+                </Pressable>
+            </View> 
+        </View>
+    );
+
+} 
+
+
+
 
 export {generateShuffledIds, generateMemoryGameIds};

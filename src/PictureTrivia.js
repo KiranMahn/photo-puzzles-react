@@ -9,7 +9,7 @@ import Quiz from './Quiz';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import shuffle from './utils/shuffle';
-import generateShuffledIds from './utils/generator';
+import {generateShuffledIds} from './utils/generator';
 
 let imgIds;
 let imgOrder;

@@ -6,7 +6,7 @@ import JSConfetti from 'js-confetti';
 import ShowStory from './ShowStory';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import generateShuffledIds from './utils/generator';
+import {generateShuffledIds} from './utils/generator';
 
 const resetGame = () => {
     return 0;
