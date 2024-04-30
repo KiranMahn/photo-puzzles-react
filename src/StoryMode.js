@@ -6,6 +6,7 @@ import JSConfetti from 'js-confetti';
 import ShowStory from './ShowStory';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import {generateShuffledIds} from './utils/generator';
 
 const resetGame = () => {
     return 0;
@@ -39,25 +40,9 @@ const StoryMode = () => {
     const [src, setSrc] = useState(myData["images"][currId]["src"]);
     const [prompt, setPrompt] = useState("Choose your starting image");
     const [showStory, setShowStory] = useState(false);
-    let imgOrder = []
-    for(let i = 0; i < numImages; i++) {
-        imgOrder.push(i)
-    }
-    function shuffle(array) {
-        let currentIndex = array.length;
     
-        // While there remain elements to shuffle...
-        while (currentIndex != 0) {
-    
-        // Pick a remaining element...
-        let randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-    
-        // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
-        }
-    }
+    let imgOrder = generateShuffledIds(numImages);
+
     const addImage = (id) => {
         setPrompt("Choose the next image for your story")
         console.log("adding image with id: " + imgOrder[id]);

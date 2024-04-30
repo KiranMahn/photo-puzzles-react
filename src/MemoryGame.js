@@ -1,55 +1,47 @@
 import {Link} from 'react-router-dom';
 import { View, Image, Pressable, Text } from 'react-native-web';
 import ReactFlipCard from 'reactjs-flip-card'
-import { shuffle } from './PictureTrivia';
+import {generateMemoryGameIds} from './utils/generator';
 import myData from './PhotoDetails.json';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import JSConfetti from 'js-confetti';
 
+// first card choice
 let firstCard = "";
+
+// second card choice
 let secondCard = "";
+
+// number of correct pair guesses in a row
 let correctInARow = 0;
+
+// total number of images being displayed in cards
 let numImages = parseInt(myData["images"].length);
 
-const Timer = () => {
-    return (
-        <View>
-            <Text>
-                Timer: 
-            </Text>
-        </View>
-    );
-}
+// create a list of shuffled image ids  
+let imageOrder = generateMemoryGameIds();
 
-const populateOrder = () => {
-    let imageOrder = []
-    for(let i = 0; i < numImages; i++) {
-        imageOrder.push(i);
-        imageOrder.push(i);
-    }
-    shuffle(imageOrder);
-    shuffle(imageOrder);
-    return imageOrder;
-}
-
-let imageOrder = populateOrder();
-console.log("imageOrder: " + imageOrder);
-
-
-
+// main component 
 const MemoryGame = () => {
+    // states 
     const [found, setFound] = useState();
     const [showInfoPanel, setShowInfoPanel] = useState(true);
     const [blur, setBlur] = useState(0.5);
+
+    // canvas for confetti 
     const canvas = this;
     const jsConfetti = new JSConfetti({canvas});
+
+    // a list of card objects to be displayed in a grid
     let cards = [];
     
-
+    // information popup
     const PopUp = () => {
+        // if should be shown 
         if(showInfoPanel) {
             setBlur(0.5);
+            // if all have been guessed correctly 
             if(correctInARow == numImages) {
                 return (
                     <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
@@ -94,7 +86,9 @@ const MemoryGame = () => {
                     </View>
                 );
 
-            } else {
+            } 
+            // if game not yet won show how to play information 
+            else {
                 return (
                     <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
                         <View style={{
@@ -138,34 +132,35 @@ const MemoryGame = () => {
                     </View>
                 );
             }
-        } else {
+        } 
+        // if panel not ready to be shown return nothing
+        else {
             return;
         }
     }
 
-
+    // set firstCard and secondCard to determine if pairs match 
     const setActiveCard = (key) => {
-        // set appropriate card
+        // set appropriate card. If first card has not yet been set then that is the one to set
         if(firstCard.length == 0) {
             firstCard = key;
-        } else {
+        }
+        // if first card has been set then set the second card  
+        else {
             secondCard = key;
         }
     
-        console.log("firstCard: ." + firstCard + ".");
-        console.log("secondCard: ." + secondCard + ".");
-        //if second card is being set, check for match 
+        //if both cards are set, check for match 
         if(secondCard.length !== 0) {
-            console.log("comparing...")
+
+            // if a match is found, give a point to user and reset firstCard and secondCard, and increase the number of correct pair guesses in a row 
             if(parseInt(firstCard) === parseInt(secondCard)) {
-                console.log("you get a point!!");
                 correctInARow++;
                 firstCard = "";
                 secondCard = "";
-                // temp.push(firstCard);
-            } else {
-                //flip back cards
-                console.log("wrong")
+            } 
+            // if not a match then reset correct in a row, reset first and second card, and flip back over cards
+            else {
                 setTimeout(() => {
                     setFound(false);
                 }, "500");
@@ -173,9 +168,12 @@ const MemoryGame = () => {
                 secondCard = "";
                 correctInARow = 0;
             }
+
+            // reset card flipping state
             setFound(undefined);
+
+            // if all pairs have been found consecutively then show winning screen with confetti 
             if(correctInARow == numImages) {
-                console.log("you win")
                 jsConfetti.addConfetti({
                     emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
                  })
@@ -188,9 +186,9 @@ const MemoryGame = () => {
                   })
             }
         }
-    
     }
 
+    // generate cards 
     for(let i = 0; i < imageOrder.length; i++) {
         let src = myData["images"][imageOrder[i]]["src"];
         cards.push(
@@ -206,6 +204,8 @@ const MemoryGame = () => {
             />
         );
     }
+
+    // main component with the header and grid of cards and info panel
     return (
         <View style={{height: '100vh', display: 'flex'}}>
             <PopUp/>

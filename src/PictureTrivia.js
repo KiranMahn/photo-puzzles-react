@@ -8,54 +8,38 @@ import JSConfetti from 'js-confetti';
 import Quiz from './Quiz';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import shuffle from './utils/shuffle';
+import {generateShuffledIds} from './utils/generator';
 
+let imgIds;
+let imgOrder;
 let id = 0;
 let idIndex = 0;
 let imgLocation = "[56.6577495263809, -4.635479507522097]";
 let imageSrc = './scotland.png';
 let numImages = parseInt(myData["images"].length);
+
 // choose random number
 id = Math.floor(Math.random() * numImages);
-console.log("id: " + id);
-let imgIds = [id]
+imgIds = [id]
 
-let imgOrder = []
-for(let i = 0; i < numImages; i++) {
-    imgOrder.push(i)
-}
-function shuffle(array) {
-    let currentIndex = array.length;
-  
-    // While there remain elements to shuffle...
-    while (currentIndex != 0) {
-  
-      // Pick a remaining element...
-      let randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
-    }
-}
+// create a random image order 
+imgOrder = generateShuffledIds(numImages);
 
-shuffle(imgOrder);
+// set current id to the first in the list of random images 
 id = imgOrder[0];
-// get image with that id
 
+// get image and location with that id
 imgLocation = myData["images"][id]["location"];
-console.log("imageLocation: " + imgLocation);
-
 imageSrc = myData["images"][id]["src"];
-console.log("imageSrc: " + imageSrc);
 
+// the picture trivia game 
 const PictureTrivia = (props) => {
-    console.log(myData);
+
     const [blur, setBlur] = useState(0.5);
     const [currId, setCurrId] = useState(id);
     // result is true for win or false for lost
     const [result, setResult] = useState("Pending");
-    console.log("currId in pt: " + currId)
     // ready is true when user wins or has guess wrong 3 times in a row
     const [ready, setReady] = useState(false);
     let imgHistory = []
@@ -70,6 +54,7 @@ const PictureTrivia = (props) => {
     // imageSrc = myData["images"][currId]["src"];
     const [src, setSrc] = useState(myData["images"][currId]["src"]);
 
+    // called at start of game and to view results 
     const resetGame = () => {
         setReset(true);
         setResult("Pending");
@@ -93,14 +78,7 @@ const PictureTrivia = (props) => {
         setBlur(1);
         setAttempt(0);
     }
-    
-    
 
-    // set image url 
-    // set image location 
-
-    // get rnd id
-    
     const [showInfoPanel, setShowInfoPanel] = useState(true);
 
     const getResult = (result) => {
@@ -162,45 +140,6 @@ const PictureTrivia = (props) => {
                         </View> 
                     </View>
                 );
-            }
-            if(result == "Try"){
-                return (
-                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
-                        <View style={{
-                            width: '50vw',
-                            height: '30vh', 
-                            backgroundColor: 'oldlace', 
-                            justifyContent: 'space-evenly', 
-                            alignItems: 'center',
-                            borderRadius: 25,
-                            border: '3px solid moccasin'
-                            }}>
-                            <Text style={{
-                                    fontFamily: 'Arvo-Bold, serif',
-                                    fontWeight: 'bold',
-                                    fontSize: 'x-large'
-                                }}>Try Again!</Text>
-                            <Text>
-                                Your guess was {distance} miles away!
-                            </Text>
-                            <Pressable onPress={() => {resetGame();}} 
-                                style={{
-                                    width: '20%',
-                                    height: '15%',
-                                    backgroundColor: 'moccasin',
-                                    borderRadius: '15px',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                }}>
-                                <Text style={{
-                                    fontFamily: 'Arvo-Bold, serif',
-                                    fontWeight: 'bold'
-                                }}>Try Again</Text>
-                            </Pressable>
-                        </View> 
-                    </View>
-                );
-
             }
             if(result == "Lost"){
                 return (
@@ -319,8 +258,7 @@ const PictureTrivia = (props) => {
             return;
         }
     }
-    // setSrc(myData["images"][currId]["src"]);
-    console.log("src: " + src);
+
     return (
         <View style={{height: '100vh', width: '100vw', display: 'flex'}} onload={() => resetGame}>
             <PopUp/>
