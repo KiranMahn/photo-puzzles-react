@@ -38,6 +38,7 @@ const MemoryGame = () => {
     
     // information popup
     const PopUp = () => {
+        
         // if should be shown 
         if(showInfoPanel) {
             setBlur(0.5);
@@ -92,9 +93,12 @@ const MemoryGame = () => {
             } 
             // if game not yet won show how to play information 
             else {
+                const handleClick = () => {
+                    console.log("youre a fucking birch")
+                }
                 
                 return (
-                    <GeneratePopup title="How to play" body="Select matching images. Get all the matches correct in a row to win." buttonTxt="Close me" onclickFunctions={[(console.log, "clicked"), (setShowInfoPanel, false), (setBlur, 1)]} />
+                    <GeneratePopup title="How to player" body="Select matching images. Get all the matches correct in a row to win." buttonTxt="Close me" onclickFunctions={[[console.log, "clicked whooop"], [setShowInfoPanel, false], [setBlur, 1]]} />
 
                     // <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
                     //     <View style={{
