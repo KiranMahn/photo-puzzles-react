@@ -8,7 +8,7 @@ import JSConfetti from 'js-confetti';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import shuffle from './utils/shuffle';
-import {generateShuffledIds} from './utils/generator';
+import {generateShuffledIds, GeneratePopup} from './utils/generator';
 /* Guess spot is a geoguesser */
 
 // id and index of current image
