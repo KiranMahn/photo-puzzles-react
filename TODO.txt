@@ -12,7 +12,6 @@ Non urgent fixes:
     - go striaght to results instead of having to press try again in GuessSpot 
     - confetti showed early on memory game 
         - pressing same button twice 9 times shows confetti fix it 
-    - create new method in util generator that will generate the popup with a title and body parameters and return a popup component 
     
 credits: 
  - <a href="https://www.flaticon.com/free-icons/error" title="error icons">Error icons created by Puckung - Flaticon</a>
