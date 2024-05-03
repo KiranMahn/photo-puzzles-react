@@ -66,11 +66,17 @@ const StoryMode = () => {
             setIdIndex(0)
         }
     }
+    
     const PopUp = () => {
         if(showInfoPanel) {
             setBlur(0.5);
             return (
-                <GeneratePopup title="How to play" body="Choose which picture to go next in your story by clicking on a photo." buttonTxt="Close me" onclickFunctions={[[console.log, "clicked whooop"], [setShowInfoPanel, false], [setBlur, 1]]} />
+                <GeneratePopup 
+                    title="How to play" 
+                    body="Choose which picture to go next in your story by clicking on a photo." 
+                    buttonTxt="Close me" 
+                    onclickFunctions={[[console.log, "clicked whooop"], [setShowInfoPanel, false], [setBlur, 1]]} 
+                />
             ); 
         } else {
             return;

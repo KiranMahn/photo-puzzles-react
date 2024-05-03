@@ -106,12 +106,22 @@ const PictureTrivia = (props) => {
                     confettiNumber: 500,
                   })
                 return (
-                    <GeneratePopup title="You Win!" body="Do you wish to view your results?" buttonTxt="View Results" onclickFunctions={[[resetGame, ""], [setShowInfoPanel, false], [setBlur, 1]]} />
+                    <GeneratePopup 
+                        title="You Win!" 
+                        body="Do you wish to view your results?" 
+                        buttonTxt="View Results" 
+                        onclickFunctions={[[resetGame, ""], [setShowInfoPanel, false], [setBlur, 1]]} 
+                    />
                 );
             }
             if(result == "Lost"){
                 return (
-                    <GeneratePopup title="You Lost!" body="Do you wish to view your results?" buttonTxt="View Results" onclickFunctions={[[resetGame, ""], [setShowInfoPanel, false], [setBlur, 1]]} />
+                    <GeneratePopup 
+                        title="You Lost!" 
+                        body="Do you wish to view your results?" 
+                        buttonTxt="View Results" 
+                        onclickFunctions={[[resetGame, ""], [setShowInfoPanel, false], [setBlur, 1]]} 
+                    />
                 );
             }
             
@@ -123,46 +133,12 @@ const PictureTrivia = (props) => {
     const PopUp = () => {
         if(showInfoPanel) {
             return (
-                <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
-                    <View style={{
-                        width: '50vw',
-                        height: '30vh', 
-                        backgroundColor: 'oldlace', 
-                        justifyContent: 'space-evenly', 
-                        alignItems: 'center',
-                        borderRadius: 25,
-                        border: '3px solid moccasin'
-                        }}>
-                        <Text style={{
-                                fontFamily: 'Arvo-Bold, serif',
-                                fontWeight: 'bold',
-                                fontSize: 'x-large'
-                            }}>How to Play</Text>
-                        <Text style={{fontFamily: 'Arvo-Bold', 
-                                      color: 'gray',
-                                      width: '70%',
-                                      textAlign: 'center',
-                                      letterSpacing: 1,
-                                      
-                                }}>
-                            Answer the trivia questions related to the photos on the left. You only get one attempt at each question. Each question is worth 5 points. Get {((parseInt(numImages/2)) + 2)}/{numImages} correct to win!
-                        </Text>
-                        <Pressable onPress={() => {console.log("clicked");setShowInfoPanel(false);setBlur(1);}} 
-                            style={{
-                                width: '20%',
-                                height: '15%',
-                                backgroundColor: 'moccasin',
-                                borderRadius: '15px',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            }}>
-                            <Text style={{
-                                fontFamily: 'Arvo-Bold, serif',
-                                fontWeight: 'bold'
-                            }}>Close Me</Text>
-                        </Pressable>
-                    </View> 
-                </View>
+                <GeneratePopup 
+                    title="How to Play" 
+                    body={"Answer the trivia questions related to the photos on the left. You only get one attempt at each question. Each question is worth 5 points. Get " + ((parseInt(numImages/2)) + 2) + "/" + numImages + " correct to win!"} 
+                    buttonTxt="Close me" 
+                    onclickFunctions={[[setShowInfoPanel, false], [setBlur, 1]]} 
+                />
             );
         } else {
             return;

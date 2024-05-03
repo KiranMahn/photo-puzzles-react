@@ -45,14 +45,24 @@ const MemoryGame = () => {
             // if all have been guessed correctly 
             if(correctInARow == numImages) {
                 return (
-                    <GeneratePopup title="You Win!" body="Good for you ;)" buttonTxt="Close me" onclickFunctions={[[console.log, "player won"], [setShowInfoPanel, false], [setBlur, 1]]} />
+                    <GeneratePopup 
+                        title="You Win!" 
+                        body="Good for you ;)" 
+                        buttonTxt="Close me" 
+                        onclickFunctions={[[console.log, "player won"], [setShowInfoPanel, false], [setBlur, 1]]} 
+                    />
                 );
 
             } 
             // if game not yet won show how to play information 
             else {
                 return (
-                    <GeneratePopup title="How to play" body="Select matching images. Get all the matches correct in a row to win." buttonTxt="Close me" onclickFunctions={[[console.log, "clicked whooop"], [setShowInfoPanel, false], [setBlur, 1]]} />
+                    <GeneratePopup 
+                        title="How to play" 
+                        body="Select matching images. Get all the matches correct in a row to win." 
+                        buttonTxt="Close me" 
+                        onclickFunctions={[[console.log, "clicked whooop"], [setShowInfoPanel, false], [setBlur, 1]]} 
+                    />
                 );
             }
         } 
