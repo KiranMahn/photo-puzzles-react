@@ -103,13 +103,13 @@ export default function GuessSpot(props)  {
                 // if on first attempt 
                 if(attmp == 1) {
                     return(
-                        <GeneratePopup title="Correct!" body={"It took you " + {attmp} + "attempt! Try another round!"} buttonTxt="Play Again" onclickFunctions={[[resetGame, ""]]} />
+                        <GeneratePopup title="Correct!" body={"It took you " + attmp + " attempt! Try another round!"} buttonTxt="Play Again" onclickFunctions={[[resetGame, ""]]} />
                     )
                 } 
                 // if on 2nd or 3rd attempt 
                 else {
                     return (
-                        <GeneratePopup title="Correct!" body={"It took you " + {attmp} + "attempts! Try another round!"} buttonTxt="Play Again" onclickFunctions={[[resetGame, ""]]} />
+                        <GeneratePopup title="Correct!" body={"It took you " + attmp + " attempts! Try another round!"} buttonTxt="Play Again" onclickFunctions={[[resetGame, ""]]} />
                     );
                 }
             }
@@ -117,21 +117,21 @@ export default function GuessSpot(props)  {
             // if user has more attempts 
             if(result == "Try"){
                 return (
-                    <GeneratePopup title="Try Again!" body={"Your guess was " + {distance} + "miles away!"} buttonTxt="Try Again" onclickFunctions={[[resetGame, ""], [setReady, false], [setBlur, 1]]} />
+                    <GeneratePopup title="Try Again!" body={"Your guess was " + distance + " miles away!"} buttonTxt="Try Again" onclickFunctions={[[setReady, false], [setBlur, 1]]} />
                 );
             }
 
             // if user has lost that round
             if(result == "Lost"){
                 return (
-                    <GeneratePopup title="You Lost!" body={"Your last guess was " + {distance} + " miles away! Do you want to play again?"} buttonTxt="Play Again" onclickFunctions={[[resetGame, ""]]} />
+                    <GeneratePopup title="You Lost!" body={"Your last guess was " + distance + " miles away! Do you want to play again?"} buttonTxt="Play Again" onclickFunctions={[[resetGame, ""]]} />
                 );
             }
 
             // if the game is over
             if(result == "over"){
                 return (
-                    <GeneratePopup title="Game Over!" body={"Total Score: " + {score} + " / " + {numImages}} buttonTxt="Close me" onclickFunctions={[[console.log, "player won"], [setShowInfoPanel, false], [setBlur, 1]]} />
+                    <GeneratePopup title="Game Over!" body={"Total Score: " + score + " / " + numImages} buttonTxt="Close me" onclickFunctions={[[console.log, "player won"], [setShowInfoPanel, false], [setBlur, 1]]} />
                 );
             }
             
