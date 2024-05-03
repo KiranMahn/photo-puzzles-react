@@ -52,6 +52,7 @@ export default function GuessSpot(props)  {
 
     // resets the game after each ROUND 
     const resetGame = () => {
+        blurBackground();
         // set game state as pending 
         setResult("Pending");
 
@@ -98,6 +99,7 @@ export default function GuessSpot(props)  {
     const ResultWindow = () => {
         // if result window is ready to be shown
         if(ready) {
+            blurBackground();
             // if user has won that round
             if(result == "Win"){
                 // if on first attempt 
