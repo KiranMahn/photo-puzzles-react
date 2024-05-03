@@ -37,15 +37,10 @@ function GeneratePopup(props) {
         // deconstructedFunction is a function in the format of a tuple where 
         // example: (console.log, "clicked"), (setShowInfoPanel, false), (setBlur, 1)
         // purpose: to deconstruct functions to prevent them being  called until the button is pressed
-        console.log("props.onclickFunctions: ", props.onclickFunctions)
-        console.log("props.onclickFunctions length: ", props.onclickFunctions.length)
 
         for(let i = 0; i < props.onclickFunctions.length; i++) {
-            console.log("props.onclickFunctions[i]: ", props.onclickFunctions[i])
             let method = props.onclickFunctions[i][0]
             let paras = props.onclickFunctions[i][1]
-            console.log("method: ", method);
-            console.log("paras: ", paras);
             method(paras);
         }
     }
