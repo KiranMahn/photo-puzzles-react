@@ -6,7 +6,7 @@ import JSConfetti from 'js-confetti';
 import ShowStory from './ShowStory';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import {generateShuffledIds} from './utils/generator';
+import {GeneratePopup, generateShuffledIds} from './utils/generator';
 
 const resetGame = () => {
     return 0;
@@ -70,51 +70,13 @@ const StoryMode = () => {
         if(showInfoPanel) {
             setBlur(0.5);
             return (
-                <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
-                    <View style={{
-                        width: '50vw',
-                        height: '30vh', 
-                        backgroundColor: 'oldlace', 
-                        justifyContent: 'space-evenly', 
-                        alignItems: 'center',
-                        borderRadius: 25,
-                        border: '3px solid moccasin'
-                        }}>
-                        <Text style={{
-                                fontFamily: 'Arvo-Bold, serif',
-                                fontWeight: 'bold',
-                                fontSize: 'x-large'
-                            }}>How to Play</Text>
-                        <Text style={{fontFamily: 'Arvo-Bold', 
-                                      color: 'gray',
-                                      width: '70%',
-                                      textAlign: 'center',
-                                      letterSpacing: 1,
-                                      
-                                }}>
-                            Choose which picture to go next in your story by clicking on a photo. 
-                        </Text>
-                        <Pressable onPress={() => {console.log("clicked");setShowInfoPanel(false); setBlur(1)}} 
-                            style={{
-                                width: '20%',
-                                height: '15%',
-                                backgroundColor: 'moccasin',
-                                borderRadius: '15px',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            }}>
-                            <Text style={{
-                                fontFamily: 'Arvo-Bold, serif',
-                                fontWeight: 'bold'
-                            }}>Close Me</Text>
-                        </Pressable>
-                    </View> 
-                </View>
-            );
+                <GeneratePopup title="How to play" body="Choose which picture to go next in your story by clicking on a photo." buttonTxt="Close me" onclickFunctions={[[console.log, "clicked whooop"], [setShowInfoPanel, false], [setBlur, 1]]} />
+            ); 
         } else {
             return;
         }
     }
+     
     return (
         <View style={{height: '100vh', display: 'flex'}} onload={() => resetGame}>
             <PopUp/>
