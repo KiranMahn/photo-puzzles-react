@@ -11,32 +11,16 @@ import {GeneratePopup, generateShuffledIds} from './utils/generator';
 const resetGame = () => {
     return 0;
 }
-let imgLocation = "[56.6577495263809, -4.635479507522097]";
-let idIndex = 0;
+
 let numImages = parseInt(myData["images"].length);
 
 const StoryMode = () => {
     const [chosenImagesIds, setchosenImagesIds] = useState([]);
     const [idIndex, setIdIndex] = useState(0);
-    console.log(myData);
     const [blur, setBlur] = useState(0.5);
     const [currId, setCurrId] = useState(0);
-    // result is true for win or false for lost
-    const [result, setResult] = useState("Pending");
-    // ready is true when user wins or has guess wrong 3 times in a row
-    const [ready, setReady] = useState(false);
-    let imgHistory = []
-    // atmp is increased with each click
-    const [attmp, setAttempt] = useState(0);
-    const [reset, setReset] = useState(false);
-    const [distance, setDistance] = useState(0);
-    const[score, setScore] = useState(0);
-    const[loc, setLoc] = useState(imgLocation);
-    const canvas = this;
-    const jsConfetti = new JSConfetti({canvas});
     const [showInfoPanel, setShowInfoPanel] = useState(true);
     const [chosenImages, setChosenImages] = useState([]);
-    // imageSrc = myData["images"][currId]["src"];
     const [src, setSrc] = useState(myData["images"][currId]["src"]);
     const [prompt, setPrompt] = useState("Choose your starting image");
     const [showStory, setShowStory] = useState(false);
@@ -62,11 +46,10 @@ const StoryMode = () => {
         else {
             console.log("idIndex above " + numImages + ", currently: " + idIndex)
             setShowStory(true);
-            // setShowInfoPanel(true)
             setIdIndex(0)
         }
     }
-    
+
     const PopUp = () => {
         if(showInfoPanel) {
             setBlur(0.5);
@@ -125,8 +108,6 @@ const StoryMode = () => {
                     </Pressable>
                 </View>
             </View>}
-            
-            
         </View>
         
 
