@@ -6,6 +6,7 @@ import PictureTrivia from './PictureTrivia';
 import StoryMode from './StoryMode';
 import MemoryGame from './MemoryGame';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Admin from './Admin';
 
 /* App.js is the first file to load and is the root of the web app rendered by index.js */
 
@@ -36,6 +37,9 @@ function App() {
 
             /* MemoryGame */
             <Route exact path="/memorygame" element={<MemoryGame/>}/>
+
+            /* Admin */
+            <Route exact path="/admin" element={<Admin/>}/>
             
             /* The * catches anything not stated above and will show a Page not found error
             This error's css needs to be updated  */

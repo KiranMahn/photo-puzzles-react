@@ -1,6 +1,6 @@
 PRE-MERGE:
     - properly test generated popups!!! 
-
+    - test changes to storyMode
 
 
 Non urgent fixes: 
@@ -10,7 +10,6 @@ Non urgent fixes:
     - hard reset mini games when user goes to home page (if user plays minigame, goes to homepage, plays another game, and returns to first game then gamestate is not properly reset and error occurs)
     - play again button for picture trivia 
     - handle routing on server side 
-    - update page not found css
     - update loader in GuessMap
     - create state [loaded, set loaded] which is triggered on lazy image onload function. while loaded is false display loading message
     - go striaght to results instead of having to press try again in GuessSpot 
@@ -18,3 +17,6 @@ Non urgent fixes:
         - pressing same button twice 9 times shows confetti fix it 
 credits: 
  - <a href="https://www.flaticon.com/free-icons/error" title="error icons">Error icons created by Puckung - Flaticon</a>
+
+ npm run build 
+ scp -r build/* kiran@oban.raintown.org:public_html/
