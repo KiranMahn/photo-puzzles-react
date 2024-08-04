@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './admin.css';
 
 const Msg = (props) => {
     const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
