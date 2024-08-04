@@ -1,6 +1,6 @@
 import GameButton from "./GameButton";
 import './App.css';
-
+import { Link } from "react-router-dom";
 /* This is the first page that App.js displays. From here you can navigate to all the miniGames */
 
 export default function Home() {
@@ -12,8 +12,10 @@ export default function Home() {
     return ( 
         <div className={"container"}>
             <div className={"homePage"}>
-
-                <p className={"Header"}> {puzzlePiece} Photo Puzzles</p>
+                <div style={{display: 'flex', flexDirection: 'row', width: '100vw', justifyContent: 'center'}}>
+                    <p className={"Header"}> {puzzlePiece} Photo Puzzles</p>
+                </div>
+                
                 <div className={"gameButton"}>
                     <GameButton title="Guess the spot"></GameButton>
                 </div>

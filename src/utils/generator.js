@@ -30,11 +30,18 @@ function generateMemoryGameIds() {
 }
 
 // generate a popup with a title, body, and buttonTxt parameters and return the JSX custom popup element 
-function generatePopup(title, body, buttonTxt, onclickFunctions) {
+// props: { title, body, buttonTxt, onclickFunctions }
+function GeneratePopup(props) {
 
     const handleClick = () => {
-        for(const method in onclickFunctions) {
-            method();
+        // deconstructedFunction is a function in the format of a tuple where 
+        // example: (console.log, "clicked"), (setShowInfoPanel, false), (setBlur, 1)
+        // purpose: to deconstruct functions to prevent them being  called until the button is pressed
+
+        for(let i = 0; i < props.onclickFunctions.length; i++) {
+            let method = props.onclickFunctions[i][0]
+            let paras = props.onclickFunctions[i][1]
+            method(paras);
         }
     }
 
@@ -53,7 +60,7 @@ function generatePopup(title, body, buttonTxt, onclickFunctions) {
                         fontFamily: 'Arvo-Bold, serif',
                         fontWeight: 'bold',
                         fontSize: 'x-large'
-                    }}>{title}</Text>
+                    }}>{props.title}</Text>
                 <Text style={{fontFamily: 'Arvo-Bold', 
                             color: 'gray',
                             width: '70%',
@@ -61,9 +68,10 @@ function generatePopup(title, body, buttonTxt, onclickFunctions) {
                             letterSpacing: 1,
                             
                         }}>
-                    You Win!
+                    {props.body}
                 </Text>
-                <Pressable onPress={() => handleClick} 
+                <Pressable 
+                    onPress={handleClick} 
                     style={{
                         width: '20%',
                         height: '15%',
@@ -75,7 +83,7 @@ function generatePopup(title, body, buttonTxt, onclickFunctions) {
                     <Text style={{
                         fontFamily: 'Arvo-Bold, serif',
                         fontWeight: 'bold'
-                    }}>{buttonTxt}</Text>
+                    }}>{props.buttonTxt}</Text>
                 </Pressable>
             </View> 
         </View>
@@ -86,4 +94,4 @@ function generatePopup(title, body, buttonTxt, onclickFunctions) {
 
 
 
-export {generateShuffledIds, generateMemoryGameIds};
+export {generateShuffledIds, generateMemoryGameIds, GeneratePopup};

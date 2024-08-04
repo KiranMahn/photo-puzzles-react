@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import { View, Image, Pressable, Text } from 'react-native-web';
 import ReactFlipCard from 'reactjs-flip-card'
-import {generateMemoryGameIds} from './utils/generator';
+import {generateMemoryGameIds, GeneratePopup} from './utils/generator';
 import myData from './PhotoDetails.json';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -38,98 +38,31 @@ const MemoryGame = () => {
     
     // information popup
     const PopUp = () => {
+        
         // if should be shown 
         if(showInfoPanel) {
             setBlur(0.5);
             // if all have been guessed correctly 
             if(correctInARow == numImages) {
                 return (
-                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
-                        <View style={{
-                            width: '50vw',
-                            height: '30vh', 
-                            backgroundColor: 'oldlace', 
-                            justifyContent: 'space-evenly', 
-                            alignItems: 'center',
-                            borderRadius: 25,
-                            border: '3px solid moccasin'
-                            }}>
-                            <Text style={{
-                                    fontFamily: 'Arvo-Bold, serif',
-                                    fontWeight: 'bold',
-                                    fontSize: 'x-large'
-                                }}>How to Play</Text>
-                            <Text style={{fontFamily: 'Arvo-Bold', 
-                                        color: 'gray',
-                                        width: '70%',
-                                        textAlign: 'center',
-                                        letterSpacing: 1,
-                                        
-                                    }}>
-                                You Win!
-                            </Text>
-                            <Pressable onPress={() => {console.log("clicked");setShowInfoPanel(false); setBlur(1)}} 
-                                style={{
-                                    width: '20%',
-                                    height: '15%',
-                                    backgroundColor: 'moccasin',
-                                    borderRadius: '15px',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                }}>
-                                <Text style={{
-                                    fontFamily: 'Arvo-Bold, serif',
-                                    fontWeight: 'bold'
-                                }}>Close Me</Text>
-                            </Pressable>
-                        </View> 
-                    </View>
+                    <GeneratePopup 
+                        title="You Win!" 
+                        body="Good for you ;)" 
+                        buttonTxt="Close me" 
+                        onclickFunctions={[[console.log, "player won"], [setShowInfoPanel, false], [setBlur, 1]]} 
+                    />
                 );
 
             } 
             // if game not yet won show how to play information 
             else {
                 return (
-                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
-                        <View style={{
-                            width: '50vw',
-                            height: '30vh', 
-                            backgroundColor: 'oldlace', 
-                            justifyContent: 'space-evenly', 
-                            alignItems: 'center',
-                            borderRadius: 25,
-                            border: '3px solid moccasin'
-                            }}>
-                            <Text style={{
-                                    fontFamily: 'Arvo-Bold, serif',
-                                    fontWeight: 'bold',
-                                    fontSize: 'x-large'
-                                }}>How to Play</Text>
-                            <Text style={{fontFamily: 'Arvo-Bold', 
-                                        color: 'gray',
-                                        width: '70%',
-                                        textAlign: 'center',
-                                        letterSpacing: 1,
-                                        
-                                    }}>
-                                Select matching images. Get all the matches correct in a row to win. 
-                            </Text>
-                            <Pressable onPress={() => {console.log("clicked");setShowInfoPanel(false); setBlur(1)}} 
-                                style={{
-                                    width: '20%',
-                                    height: '15%',
-                                    backgroundColor: 'moccasin',
-                                    borderRadius: '15px',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                }}>
-                                <Text style={{
-                                    fontFamily: 'Arvo-Bold, serif',
-                                    fontWeight: 'bold'
-                                }}>Close Me</Text>
-                            </Pressable>
-                        </View> 
-                    </View>
+                    <GeneratePopup 
+                        title="How to play" 
+                        body="Select matching images. Get all the matches correct in a row to win." 
+                        buttonTxt="Close me" 
+                        onclickFunctions={[[console.log, "clicked whooop"], [setShowInfoPanel, false], [setBlur, 1]]} 
+                    />
                 );
             }
         } 

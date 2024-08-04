@@ -8,7 +8,7 @@ import JSConfetti from 'js-confetti';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import shuffle from './utils/shuffle';
-import {generateShuffledIds} from './utils/generator';
+import {generateShuffledIds, GeneratePopup} from './utils/generator';
 /* Guess spot is a geoguesser */
 
 // id and index of current image
@@ -52,6 +52,7 @@ export default function GuessSpot(props)  {
 
     // resets the game after each ROUND 
     const resetGame = () => {
+        blurBackground();
         // set game state as pending 
         setResult("Pending");
 
@@ -98,84 +99,29 @@ export default function GuessSpot(props)  {
     const ResultWindow = () => {
         // if result window is ready to be shown
         if(ready) {
+            blurBackground();
             // if user has won that round
             if(result == "Win"){
                 // if on first attempt 
                 if(attmp == 1) {
                     return(
-                        <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
-                            <View style={{
-                                width: '50vw',
-                                height: '30vh', 
-                                backgroundColor: 'oldlace', 
-                                justifyContent: 'space-evenly', 
-                                alignItems: 'center',
-                                borderRadius: 25,
-                                border: '3px solid moccasin'
-                                }}>
-                                <Text style={{
-                                        fontFamily: 'Arvo-Bold, serif',
-                                        fontWeight: 'bold',
-                                        fontSize: 'x-large'
-                                    }}>Correct!</Text>
-                                <Text>
-                                    It took you {attmp} attempt! Try another round!
-                                </Text>
-                                <Pressable onPress={() => {resetGame();}} 
-                                    style={{
-                                        width: '20%',
-                                        height: '15%',
-                                        backgroundColor: 'moccasin',
-                                        borderRadius: '15px',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                    }}>
-                                    <Text style={{
-                                        fontFamily: 'Arvo-Bold, serif',
-                                        fontWeight: 'bold'
-                                    }}>Play Again</Text>
-                                </Pressable>
-                            </View> 
-                        </View>
+                        <GeneratePopup 
+                            title="Correct!" 
+                            body={"It took you " + attmp + " attempt! Try another round!"} 
+                            buttonTxt="Play Again" 
+                            onclickFunctions={[[resetGame, ""]]} 
+                        />
                     )
                 } 
                 // if on 2nd or 3rd attempt 
                 else {
                     return (
-                        <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
-                            <View style={{
-                                width: '50vw',
-                                height: '30vh', 
-                                backgroundColor: 'oldlace', 
-                                justifyContent: 'space-evenly', 
-                                alignItems: 'center',
-                                borderRadius: 25,
-                                border: '3px solid moccasin'
-                                }}>
-                                <Text style={{
-                                        fontFamily: 'Arvo-Bold, serif',
-                                        fontWeight: 'bold',
-                                        fontSize: 'x-large'
-                                    }}>Correct!</Text>
-                                <Text>
-                                    It took you {attmp} attempts! Try another round!
-                                </Text>
-                                <Pressable onPress={() => {resetGame();}} 
-                                    style={{
-                                        width: '20%',
-                                        height: '15%',
-                                        backgroundColor: 'moccasin',
-                                        borderRadius: '15px',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                    }}>
-                                    <Text style={{
-                                        fontFamily: 'Arvo-Bold, serif',
-                                        fontWeight: 'bold'
-                                    }}>Play Again</Text>
-                                </Pressable>
-                            </View> 
-                        </View>
+                        <GeneratePopup 
+                            title="Correct!" 
+                            body={"It took you " + attmp + " attempts! Try another round!"} 
+                            buttonTxt="Play Again" 
+                            onclickFunctions={[[resetGame, ""]]} 
+                        />
                     );
                 }
             }
@@ -183,111 +129,38 @@ export default function GuessSpot(props)  {
             // if user has more attempts 
             if(result == "Try"){
                 return (
-                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
-                        <View style={{
-                            width: '50vw',
-                            height: '30vh', 
-                            backgroundColor: 'oldlace', 
-                            justifyContent: 'space-evenly', 
-                            alignItems: 'center',
-                            borderRadius: 25,
-                            border: '3px solid moccasin'
-                            }}>
-                            <Text style={{
-                                    fontFamily: 'Arvo-Bold, serif',
-                                    fontWeight: 'bold',
-                                    fontSize: 'x-large'
-                                }}>Try Again!</Text>
-                            <Text>
-                                Your guess was {distance} miles away!
-                            </Text>
-                            <Pressable onPress={() => {setReady(false); setBlur(1)}} 
-                                style={{
-                                    width: '20%',
-                                    height: '15%',
-                                    backgroundColor: 'moccasin',
-                                    borderRadius: '15px',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                }}>
-                                <Text style={{
-                                    fontFamily: 'Arvo-Bold, serif',
-                                    fontWeight: 'bold'
-                                }}>Try Again</Text>
-                            </Pressable>
-                        </View> 
-                    </View>
+                    <GeneratePopup 
+                        title="Try Again!" 
+                        body={"Your guess was " + distance + " miles away!"} 
+                        buttonTxt="Try Again" 
+                        onclickFunctions={[[setReady, false], [setBlur, 1]]} 
+                    />
                 );
-
             }
 
             // if user has lost that round
             if(result == "Lost"){
                 return (
-                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
-                        <View style={{
-                            width: '50vw',
-                            height: '30vh', 
-                            backgroundColor: 'oldlace', 
-                            justifyContent: 'space-evenly', 
-                            alignItems: 'center',
-                            borderRadius: 25,
-                            border: '3px solid moccasin'
-                            }}>
-                            <Text style={{
-                                    fontFamily: 'Arvo-Bold, serif',
-                                    fontWeight: 'bold',
-                                    fontSize: 'x-large'
-                                }}>You Lost!</Text>
-                            <Text>
-                                Your last guess was {distance} miles away! Do you want to play again?
-                            </Text>
-                            <Pressable onPress={() => {resetGame();}} 
-                                style={{
-                                    width: '20%',
-                                    height: '15%',
-                                    backgroundColor: 'moccasin',
-                                    borderRadius: '15px',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                }}>
-                                <Text style={{
-                                    fontFamily: 'Arvo-Bold, serif',
-                                    fontWeight: 'bold'
-                                }}>Play Again</Text>
-                            </Pressable>
-                        </View> 
-                    </View>
+                    <GeneratePopup 
+                        title="You Lost!" 
+                        body={"Your last guess was " + distance + " miles away! Do you want to play again?"} 
+                        buttonTxt="Play Again" 
+                        onclickFunctions={[[resetGame, ""]]} 
+                    />
                 );
             }
 
             // if the game is over
             if(result == "over"){
                 return (
-                    <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}} onload={blurBackground()}>
-                        <View style={{
-                            width: '50vw',
-                            height: '30vh', 
-                            backgroundColor: 'oldlace', 
-                            justifyContent: 'space-evenly', 
-                            alignItems: 'center',
-                            borderRadius: 25,
-                            border: '3px solid moccasin'
-                            }}>
-                            <Text style={{
-                                    fontFamily: 'Arvo-Bold, serif',
-                                    fontWeight: 'bold',
-                                    fontSize: 'x-large'
-                                }}>Game Over!</Text>
-                            <Text>
-                                Total Score: {score} / {numImages}
-                            </Text>
-
-                        </View> 
-                    </View>
+                    <GeneratePopup 
+                        title="Game Over!" 
+                        body={"Total Score: " + score + " / " + numImages} 
+                        buttonTxt="Close me" 
+                        onclickFunctions={[[console.log, "player won"], [setShowInfoPanel, false], [setBlur, 1]]} 
+                    />
                 );
             }
-            
         }
         // if result window is not ready to be returned then return nothing
         else {
@@ -299,46 +172,12 @@ export default function GuessSpot(props)  {
         // if information panel is ready to be shown then return the popup
         if(showInfoPanel) {
             return (
-                <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
-                    <View style={{
-                        width: '50vw',
-                        height: '30vh', 
-                        backgroundColor: 'oldlace', 
-                        justifyContent: 'space-evenly', 
-                        alignItems: 'center',
-                        borderRadius: 25,
-                        border: '3px solid moccasin'
-                        }}>
-                        <Text style={{
-                                fontFamily: 'Arvo-Bold, serif',
-                                fontWeight: 'bold',
-                                fontSize: 'x-large'
-                            }}>How to Play</Text>
-                        <Text style={{fontFamily: 'Arvo-Bold', 
-                                      color: 'gray',
-                                      width: '70%',
-                                      textAlign: 'center',
-                                      letterSpacing: 1,
-                                      
-                                }}>
-                            Guess where the picture was taken by selecting a point on the map. You get 3 attempts. Your guess must be within 500 miles of the photo.
-                        </Text>
-                        <Pressable onPress={() => {setShowInfoPanel(false);setBlur(1);}} 
-                            style={{
-                                width: '20%',
-                                height: '15%',
-                                backgroundColor: 'moccasin',
-                                borderRadius: '15px',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            }}>
-                            <Text style={{
-                                fontFamily: 'Arvo-Bold, serif',
-                                fontWeight: 'bold'
-                            }}>Close Me</Text>
-                        </Pressable>
-                    </View> 
-                </View>
+                <GeneratePopup 
+                    title="How to Play" 
+                    body="Guess where the picture was taken by selecting a point on the map. You get 3 attempts. Your guess must be within 500 miles of the photo." 
+                    buttonTxt="Close me" 
+                    onclickFunctions={[[setShowInfoPanel, false], [setBlur, 1]]} 
+                />
             );
         } 
         // if information panel should not be shown then return nothing

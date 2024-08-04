@@ -6,37 +6,21 @@ import JSConfetti from 'js-confetti';
 import ShowStory from './ShowStory';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import {generateShuffledIds} from './utils/generator';
+import {GeneratePopup, generateShuffledIds} from './utils/generator';
 
 const resetGame = () => {
     return 0;
 }
-let imgLocation = "[56.6577495263809, -4.635479507522097]";
-let idIndex = 0;
+
 let numImages = parseInt(myData["images"].length);
 
 const StoryMode = () => {
     const [chosenImagesIds, setchosenImagesIds] = useState([]);
     const [idIndex, setIdIndex] = useState(0);
-    console.log(myData);
     const [blur, setBlur] = useState(0.5);
     const [currId, setCurrId] = useState(0);
-    // result is true for win or false for lost
-    const [result, setResult] = useState("Pending");
-    // ready is true when user wins or has guess wrong 3 times in a row
-    const [ready, setReady] = useState(false);
-    let imgHistory = []
-    // atmp is increased with each click
-    const [attmp, setAttempt] = useState(0);
-    const [reset, setReset] = useState(false);
-    const [distance, setDistance] = useState(0);
-    const[score, setScore] = useState(0);
-    const[loc, setLoc] = useState(imgLocation);
-    const canvas = this;
-    const jsConfetti = new JSConfetti({canvas});
     const [showInfoPanel, setShowInfoPanel] = useState(true);
     const [chosenImages, setChosenImages] = useState([]);
-    // imageSrc = myData["images"][currId]["src"];
     const [src, setSrc] = useState(myData["images"][currId]["src"]);
     const [prompt, setPrompt] = useState("Choose your starting image");
     const [showStory, setShowStory] = useState(false);
@@ -62,59 +46,26 @@ const StoryMode = () => {
         else {
             console.log("idIndex above " + numImages + ", currently: " + idIndex)
             setShowStory(true);
-            // setShowInfoPanel(true)
             setIdIndex(0)
         }
     }
+
     const PopUp = () => {
         if(showInfoPanel) {
             setBlur(0.5);
             return (
-                <View style={{position: 'absolute', zIndex: 1, alignSelf: 'center', marginTop: '10%'}}>
-                    <View style={{
-                        width: '50vw',
-                        height: '30vh', 
-                        backgroundColor: 'oldlace', 
-                        justifyContent: 'space-evenly', 
-                        alignItems: 'center',
-                        borderRadius: 25,
-                        border: '3px solid moccasin'
-                        }}>
-                        <Text style={{
-                                fontFamily: 'Arvo-Bold, serif',
-                                fontWeight: 'bold',
-                                fontSize: 'x-large'
-                            }}>How to Play</Text>
-                        <Text style={{fontFamily: 'Arvo-Bold', 
-                                      color: 'gray',
-                                      width: '70%',
-                                      textAlign: 'center',
-                                      letterSpacing: 1,
-                                      
-                                }}>
-                            Choose which picture to go next in your story by clicking on a photo. 
-                        </Text>
-                        <Pressable onPress={() => {console.log("clicked");setShowInfoPanel(false); setBlur(1)}} 
-                            style={{
-                                width: '20%',
-                                height: '15%',
-                                backgroundColor: 'moccasin',
-                                borderRadius: '15px',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            }}>
-                            <Text style={{
-                                fontFamily: 'Arvo-Bold, serif',
-                                fontWeight: 'bold'
-                            }}>Close Me</Text>
-                        </Pressable>
-                    </View> 
-                </View>
-            );
+                <GeneratePopup 
+                    title="How to play" 
+                    body="Choose which picture to go next in your story by clicking on a photo." 
+                    buttonTxt="Close me" 
+                    onclickFunctions={[[console.log, "clicked whooop"], [setShowInfoPanel, false], [setBlur, 1]]} 
+                />
+            ); 
         } else {
             return;
         }
     }
+     
     return (
         <View style={{height: '100vh', display: 'flex'}} onload={() => resetGame}>
             <PopUp/>
@@ -157,8 +108,6 @@ const StoryMode = () => {
                     </Pressable>
                 </View>
             </View>}
-            
-            
         </View>
         
 

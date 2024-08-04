@@ -1,16 +1,4 @@
-@media only screen and (max-width: 980px) {  
-  body {
-    height: 100vh;
-    width: 100vw;
-    background-color: rgb(209,109,106);
-    background-image: url('/public/notavailable.png');
-    background-size: cover;
-    background-position: center;
-  }
-  div#root {
-    display: none;
-  }
-}
+
 
 @font-face {
   font-family: 'Arvo-Bold';
@@ -124,7 +112,7 @@
     font-family: Arvo-Bold, serif;
     border-bottom-width:1px;
     padding: 0.5em;
-    border-color: lightgray
+    border-color: lightgray;
   }
 
   .gameButton {
