@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './admin.css';
 
 const Memory = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
